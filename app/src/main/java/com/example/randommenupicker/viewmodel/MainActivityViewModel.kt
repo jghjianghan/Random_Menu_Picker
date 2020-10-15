@@ -8,7 +8,6 @@ import com.example.randommenupicker.model.*
 class MainActivityViewModel: ViewModel() {
     private val randomizer = MenuChooser()
     private var listMenu = ArrayList<Menu>()
-    private var listHistory = ArrayList<History>()
     private var historyLimit = 20
     private var chosenMenu = MutableLiveData<Menu>()
     private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
@@ -21,17 +20,18 @@ class MainActivityViewModel: ViewModel() {
     init {
         randomLimit.value = 5
         pageList.value = Page.values()
+        searchHistory.value = ArrayList<History>()
+        page.value = Page.HOME
     }
 
-    fun search(keyword:String, category:MenuAttribute){
-        //TODO
-//        chosenMenu
-    }
     fun getChosenMenu(): LiveData<Menu> {
         return chosenMenu
     }
+    fun getRandomMenu(){
+        chosenMenu.value = randomizer.getMenu(listMenu, randomLimit.value as Int)
+    }
     fun chooseMenu(menu: Menu){
-        //TODO
+        chosenMenu.value = menu
     }
     fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{
         return filteredMenuList
@@ -112,53 +112,53 @@ class MainActivityViewModel: ViewModel() {
         //TODO: sort the menu list
         //not ssure if needed
     }
-    fun searchMenu(keyword: String, category: MenuAttribute): Boolean{
+    fun searchMenu(keyword: String, category: MenuAttribute){
+        var filtered = ArrayList<Menu>()
         when(category){
             MenuAttribute.NAMA -> {
                 for (i in listMenu){
                     if (i.namaContains(keyword)){
-                        chosenMenu.value = i
-                        return true
+                        filtered.add(i)
                     }
                 }
-                return false
             }
             MenuAttribute.DESKRIPSI -> {
                 for (i in listMenu){
                     if (i.deskripsiContains(keyword)){
-                        chosenMenu.value = i
-                        return true
+                        filtered.add(i)
                     }
                 }
-                return false
             }
             MenuAttribute.BAHAN -> {
                 for (i in listMenu){
                     if (i.bahanContains(keyword)){
-                        chosenMenu.value = i
-                        return true
+                        filtered.add(i)
                     }
                 }
-                return false
             }
             MenuAttribute.TAG -> {
                 for (i in listMenu){
                     if (i.tagContains(keyword)){
-                        chosenMenu.value = i
-                        return true
+                        filtered.add(i)
                     }
                 }
-                return false
             }
             MenuAttribute.RESTO -> {
                 for (i in listMenu){
                     if (i.restoContains(keyword)){
-                        chosenMenu.value = i
-                        return true
+                        filtered.add(i)
                     }
                 }
-                return false
             }
         }
+
+        val tempHist: ArrayList<History> = searchHistory.value as ArrayList<History>
+        tempHist.add(History(keyword, category))
+        while (tempHist.size > historyLimit){
+            tempHist.removeAt(0)
+        }
+        searchHistory.value = tempHist
+
+        filteredMenuList.value = filtered
     }
 }
