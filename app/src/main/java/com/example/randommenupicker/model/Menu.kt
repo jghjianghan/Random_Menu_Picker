@@ -1,12 +1,15 @@
 package com.example.randommenupicker.model
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 class Menu (
     var nama:String,
     var deskripsi:String,
     var listBahan:ArrayList<String>,
     var listTag:ArrayList<String>,
     var listLangkah:ArrayList<String>,
-    var listResto:ArrayList<String>,
+    var listResto:ArrayList<String>
 ) {
     constructor():this(
         "",
@@ -15,7 +18,27 @@ class Menu (
         ArrayList<String>(),
         ArrayList<String>(),
         ArrayList<String>()
+    ){}
+
+    constructor(
+        nama:String,
+        deskripsi:String,
+        listBahan:String,
+        listTag:String,
+        listLangkah:String,
+        listResto:String
+    ):this(
+        nama,
+        deskripsi,
+        ArrayList<String>(),
+        ArrayList<String>(),
+        ArrayList<String>(),
+        ArrayList<String>(),
     ){
+        this.listBahan = stringToList(listBahan)
+        this.listTag = stringToList(listTag)
+        this.listLangkah = stringToList(listLangkah)
+        this.listResto = stringToList(listResto)
     }
     fun namaContains(keyword: String): Boolean{
         return containsIgnoreCase(nama, keyword);
@@ -49,5 +72,13 @@ class Menu (
     }
     private fun containsIgnoreCase(s1: String, s2:String):Boolean{
         return s1.toLowerCase().contains(s2.toLowerCase());
+    }
+    private fun stringToList(str: String): ArrayList<String>{
+        var temp = ArrayList<String>()
+        var splitted = str.split(",")
+        for (i in splitted){
+            temp.add(i.trim())
+        }
+        return temp
     }
 }
