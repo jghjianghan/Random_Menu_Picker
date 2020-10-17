@@ -15,13 +15,17 @@ class MainActivityViewModel: ViewModel() {
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
 
-    private var pageList = MutableLiveData<Array<Page>>()
-
     init {
         randomLimit.value = 5
-        pageList.value = Page.values()
         searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
+    }
+    fun loadMenu(){
+        listMenu = arrayListOf(
+            Menu("sop", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc"),
+            Menu("burger", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc"),
+            Menu("Bihun", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc")
+        )
     }
 
     fun getChosenMenu(): LiveData<Menu> {
@@ -44,9 +48,6 @@ class MainActivityViewModel: ViewModel() {
     }
     fun getPage(): LiveData<Page>{
         return page
-    }
-    fun getPageList(): LiveData<Array<Page>>{
-        return pageList
     }
 
     fun addMenu(

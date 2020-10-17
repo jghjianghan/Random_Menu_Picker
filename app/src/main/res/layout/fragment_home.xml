@@ -32,4 +32,13 @@
         android:layout_below="@id/separator"
         />
 
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_cari"
+        android:layout_centerHorizontal="true"
+        android:padding="40dp"
+        android:textSize="30sp" />
+
 </RelativeLayout>
