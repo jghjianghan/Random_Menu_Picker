@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_home_tv_text"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/separator"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:id="@+id/btn_cari"
+        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:text="@string/fragment_home_btn_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/separator"
+        />
+
+</RelativeLayout>
