@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Random Menu Picker</string>
+    <string name="fragment_home_tv_text">Makan Apa \n Hari Ini?</string>
+    <string name="fragment_home_btn_text">Cari</string>
+    <string name="openDrawer"></string>
+    <string name="closeDrawer"></string>
 </resources>

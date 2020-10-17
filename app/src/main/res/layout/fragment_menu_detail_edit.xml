@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_nama"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Nama : "
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/et_nama"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_nama"
+        />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi : "
+        android:layout_below="@id/et_nama"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/et_desc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_desc"
+        android:layout_below="@id/et_nama"
+        />
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Tag : "
+        android:layout_below="@id/et_desc"
+        android:textSize="20sp"
+    />
+
+    <EditText
+        android:id="@+id/et_tag"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_tag"
+        android:layout_below="@id/et_desc"
+        />
+
+    <TextView
+        android:id="@+id/tv_bahan"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Bahan : "
+        android:layout_below="@id/et_tag"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/et_bahan"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_bahan"
+        android:layout_below="@id/et_tag"
+        />
+
+    <TextView
+        android:id="@+id/tv_langkah"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Langkah : "
+        android:layout_below="@id/et_bahan"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/et_langkah"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_langkah"
+        android:layout_below="@id/et_bahan"
+        />
+
+    <TextView
+        android:id="@+id/tv_resto"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Tersedia di restoran : "
+        android:layout_below="@id/et_langkah"
+        android:textSize="16sp"
+        />
+
+    <EditText
+        android:id="@+id/et_resto"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_resto"
+        android:layout_below="@id/et_langkah"
+        />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_below="@id/et_resto"
+        android:layout_alignParentRight="true"
+        />
+
+    <Button
+        android:id="@+id/btn_discard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discard"
+        android:layout_below="@id/et_resto"
+        android:layout_toLeftOf="@id/btn_save"
+        />
+
+
+</RelativeLayout>
