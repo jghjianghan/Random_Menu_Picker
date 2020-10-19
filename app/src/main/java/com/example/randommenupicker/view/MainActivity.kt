@@ -59,11 +59,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getPage().observe(this, {
             println("changed")
-            changePage(it)
+            this.changePage(it)
         })
     }
 
-    fun changePage (p: Page){
+    private fun changePage (p: Page){
         val ft = supportFragmentManager.beginTransaction()
         println("changing to $p")
         when(p){
@@ -81,5 +81,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         ft.commit()
+        binding.drawerLayout.closeDrawers()
     }
 }
