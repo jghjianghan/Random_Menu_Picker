@@ -36,7 +36,7 @@ class NavAdapter(
         view.tv_nav.text = item.text
         view.setOnClickListener{
             println(view.tag)
-            viewModel.changePage(view.tag as Page)
+            viewModel.setPage(view.tag as Page)
         }
 
         return view

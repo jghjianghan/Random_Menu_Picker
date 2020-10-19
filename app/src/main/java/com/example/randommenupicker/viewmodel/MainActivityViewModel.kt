@@ -50,7 +50,7 @@ class MainActivityViewModel: ViewModel() {
     fun getPage(): LiveData<Page>{
         return page
     }
-    fun changePage(p: Page){
+    fun setPage(p: Page){
         println("old page: ${page.value}")
         page.value = p
         println("new page: ${page.value}")
