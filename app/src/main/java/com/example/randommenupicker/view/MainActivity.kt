@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fragmentManager : FragmentManager
     lateinit var viewModel: MainActivityViewModel
-    lateinit var navAdapter: NavAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +33,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        navAdapter = NavAdapter(this, viewModel, Page.values())
 
         homeFragment = HomeFragment.newInstance()
         leftDrawerFragment = LeftDrawerFragment.newInstance()
         menuFragment = MenuFragment.newInstance()
         menuDetailFragment = MenuDetailFragment.newInstance()
         menuDetailEditFragment = MenuDetailEditFragment.newInstance()
-
-        this.findViewById<ListView>(R.id.list_nav).adapter = navAdapter
 
         setSupportActionBar(binding.toolbar)
         val abdt =  ActionBarDrawerToggle(
@@ -55,25 +51,35 @@ class MainActivity : AppCompatActivity() {
         binding.drawerLayout.addDrawerListener(abdt)
         abdt.syncState()
 
+
         fragmentManager = supportFragmentManager
         var ft : FragmentTransaction = fragmentManager.beginTransaction()
         ft.add(R.id.fragment_container, homeFragment)
             .commit()
+
+        viewModel.getPage().observe(this, {
+            println("changed")
+            changePage(it)
+        })
     }
 
     fun changePage (p: Page){
         val ft = supportFragmentManager.beginTransaction()
+        println("changing to $p")
         when(p){
             Page.HOME->{
-
+                ft.replace(R.id.fragment_container, homeFragment)
             }
             Page.CARI -> TODO()
-            Page.MENU -> TODO()
+            Page.MENU -> {
+                ft.replace(R.id.fragment_container, menuFragment)
+            }
             Page.SETTING -> TODO()
             Page.EXIT -> {
                 this.moveTaskToBack(true)
                 this.finish()
             }
         }
+        ft.commit()
     }
 }

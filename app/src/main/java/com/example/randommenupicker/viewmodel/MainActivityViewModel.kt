@@ -19,6 +19,7 @@ class MainActivityViewModel: ViewModel() {
         randomLimit.value = 5
         searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
+        loadMenu()
     }
     fun loadMenu(){
         listMenu = arrayListOf(
@@ -48,6 +49,11 @@ class MainActivityViewModel: ViewModel() {
     }
     fun getPage(): LiveData<Page>{
         return page
+    }
+    fun changePage(p: Page){
+        println("old page: ${page.value}")
+        page.value = p
+        println("new page: ${page.value}")
     }
 
     fun addMenu(

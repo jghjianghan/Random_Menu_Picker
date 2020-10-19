@@ -12,7 +12,7 @@ import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.item_list_nav.view.*
 
 class NavAdapter(
-    private val activity: Activity,
+    private val inflater: LayoutInflater,
     private val viewModel: MainActivityViewModel,
     private var data : Array<Page>
 ): BaseAdapter() {
@@ -30,12 +30,13 @@ class NavAdapter(
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = LayoutInflater.from(this.activity).inflate(R.layout.item_list_nav, parent, false)
+        val view = inflater.inflate(R.layout.item_list_nav, parent, false)
         val item = this.getItem(position) as Page
         view.tag = item
         view.tv_nav.text = item.text
         view.setOnClickListener{
             println(view.tag)
+            viewModel.changePage(view.tag as Page)
         }
 
         return view

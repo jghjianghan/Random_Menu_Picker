@@ -12,16 +12,10 @@ import com.example.randommenupicker.viewmodel.MainActivityViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
-    private lateinit var activity: MainActivity
     private lateinit var viewModel: MainActivityViewModel
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is MainActivity){
-            activity = context
-            viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        } else {
-            throw ClassCastException("$context tidak sesuai")
-        }
+        viewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +23,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        viewModel.getChosenMenu().observe(this, {
+        viewModel.getChosenMenu().observe(requireActivity(), {
             binding.tvResult.text = it.nama
         })
         binding.btnCari.setOnClickListener {

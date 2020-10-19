@@ -9,20 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.databinding.FragmentLeftDrawerBinding
+import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 
 class LeftDrawerFragment : Fragment() {
     private lateinit var binding : FragmentLeftDrawerBinding
-    private lateinit var activity: MainActivity
     private lateinit var viewModel: MainActivityViewModel
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is MainActivity){
-            activity = context
-            viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        } else {
-            throw ClassCastException("$context tidak sesuai")
-        }
+        viewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -31,7 +26,7 @@ class LeftDrawerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLeftDrawerBinding.inflate(inflater, container, false);
-
+        binding.listNav.adapter = NavAdapter(inflater, viewModel, Page.values())
 
         return binding.root
     }
