@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 ft.replace(R.id.fragment_container, homeFragment)
             }
             Page.CARI -> TODO()
-            Page.MENU -> {
+            Page.LIST_MENU -> {
                 ft.replace(R.id.fragment_container, menuFragment)
             }
             Page.SETTING -> TODO()
@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 this.moveTaskToBack(true)
                 this.finish()
             }
+            else -> TODO()
         }
         ft.commit()
         binding.drawerLayout.closeDrawers()

@@ -6,15 +6,18 @@ import com.example.randommenupicker.R
 enum class Page (val text: String) {
     HOME("Home"),
     CARI("Cari"),
-    MENU("Menu"),
+    LIST_MENU("Menu"),
+    MENU_DETAIL("Detail Menu"),
+    ADD_MENU("Tambah Menu"),
+    EDIT_MENU("Ubah Menu"),
+    HAPUS_MENU("Ubah Menu"),
     SETTING("Setting"),
     EXIT("Exit");
 
-    enum class MenuPage (val text: String){
-        LIST_MENU("List Menu"),
-        MENU_DETAIL("Detail Menu"),
-        ADD_MENU("Tambah Menu"),
-        EDIT_MENU("Ubah Menu"),
-        HAPUS_MENU("Ubah Menu");
+    companion object{
+        fun getNavMenu() : Array<Page>{
+            return arrayOf(HOME, CARI, LIST_MENU, SETTING, EXIT)
+        }
     }
+
 }

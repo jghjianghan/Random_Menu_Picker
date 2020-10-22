@@ -25,7 +25,7 @@ class LeftDrawerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLeftDrawerBinding.inflate(inflater, container, false);
-        binding.listNav.adapter = NavAdapter(inflater, viewModel, Page.values())
+        binding.listNav.adapter = NavAdapter(inflater, viewModel, Page.getNavMenu())
 
         return binding.root
     }
