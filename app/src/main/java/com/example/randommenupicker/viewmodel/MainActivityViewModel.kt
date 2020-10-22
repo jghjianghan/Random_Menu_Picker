@@ -9,7 +9,8 @@ class MainActivityViewModel: ViewModel() {
     private val randomizer = MenuChooser()
     private var listMenu = ArrayList<Menu>()
     private var historyLimit = 20
-    private var chosenMenu = MutableLiveData<Menu>()
+    private var chosenMenu = MutableLiveData<Menu>();
+    private var randomChosenMenu = MutableLiveData<Menu>()
     private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
     private var searchHistory = MutableLiveData<ArrayList<History>>()
     private var randomLimit = MutableLiveData<Int>()
@@ -29,24 +30,34 @@ class MainActivityViewModel: ViewModel() {
         )
     }
 
-    fun getChosenMenu(): LiveData<Menu> {
-        return chosenMenu
+    fun loadAllMenu() {
+        filteredMenuList.value = listMenu
     }
+
+    fun getRandomChosenMenu(): LiveData<Menu> {
+        return randomChosenMenu
+    }
+
     fun getRandomMenu(){
-        chosenMenu.value = randomizer.getMenu(listMenu, randomLimit.value as Int)
+        randomChosenMenu.value = randomizer.getMenu(listMenu, randomLimit.value as Int)
     }
-    fun chooseMenu(menu: Menu){
-        chosenMenu.value = menu
+
+    fun setChosenMenu(idxItem : Int) {
+        randomChosenMenu.value = listMenu[idxItem];
     }
+
     fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{
         return filteredMenuList
     }
+
     fun getRandomLimit(): LiveData<Int>{
         return randomLimit
     }
+
     fun getSearchHistory(): LiveData<ArrayList<History>>{
         return searchHistory
     }
+
     fun getPage(): LiveData<Page>{
         return page
     }
@@ -119,6 +130,7 @@ class MainActivityViewModel: ViewModel() {
         //TODO: sort the menu list
         //not ssure if needed
     }
+
     fun searchMenu(keyword: String, category: MenuAttribute){
         var filtered = ArrayList<Menu>()
         when(category){

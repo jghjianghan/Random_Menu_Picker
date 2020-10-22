@@ -14,21 +14,32 @@ import kotlinx.android.synthetic.main.item_list_nav.view.*
 class MenuAdapter(
     private val inflater: LayoutInflater,
     private val viewModel: MainActivityViewModel,
-    private var data : Array<Menu>
+    private var data : ArrayList<Menu>
 ): BaseAdapter() {
 
     private class ViewHolder (
-        private var view: View
-    ) : View.OnClickListener {
+        private var view: View,
+        private var viewModel : MainActivityViewModel,
+        private var idxItem : Int
+    ) {
         private var binding = ItemListMenuBinding.bind(view)
+
+        init {
+            view.setOnClickListener {
+                viewModel.setChosenMenu(idxItem)
+            }
+        }
 
         public fun updateView(menu : String){
             binding.tvMenu.text = menu
         }
 
-        override fun onClick(v: View?) {
-            TODO("Not yet implemented")
-        }
+//        override fun onClick(v: View?) {
+//            when(v) {
+//                binding.tvMenu -> viewModel.setChosenMenu(idxItem)
+//
+//            }
+//        }
     }
 
     override fun getCount(): Int {
@@ -47,8 +58,9 @@ class MenuAdapter(
         lateinit var viewHolder : ViewHolder
         lateinit var view : View
         if(convertView == null) {
-            view = inflater.inflate(R.layout.item_list_nav, parent, false)
-            viewHolder = ViewHolder(view)
+            view = inflater.inflate(R.layout.item_list_menu, parent, false)
+
+            viewHolder = ViewHolder(view, viewModel, position)
             view.setTag(viewHolder)
         } else {
             view = convertView
@@ -59,5 +71,10 @@ class MenuAdapter(
         viewHolder.updateView(item)
 
         return view
+    }
+
+    fun updateList (list : ArrayList<Menu>) {
+        this.data = ArrayList<Menu>(list)
+        notifyDataSetChanged()
     }
 }

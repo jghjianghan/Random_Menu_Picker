@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.randommenupicker.databinding.FragmentCariBinding
 import com.example.randommenupicker.databinding.FragmentMenuBinding
 import com.example.randommenupicker.model.Menu
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 
-class MenuFragment : Fragment() {
-    private lateinit var binding : FragmentMenuBinding
+class CariFragment : Fragment() {
+    private lateinit var binding : FragmentCariBinding
     private lateinit var viewModel: MainActivityViewModel
-    private lateinit var fragmentDetail: MenuDetailFragment
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,26 +26,18 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMenuBinding.inflate(inflater, container, false);
-        viewModel.loadMenu()
-
-        var adapter = MenuAdapter(inflater, viewModel, ArrayList<Menu>())
-        binding.listMenu.adapter = adapter
-        viewModel.getFilteredMenuList().observe(requireActivity(),{
-            adapter.updateList(it)
-        })
-        viewModel.loadAllMenu()
+        binding = FragmentCariBinding.inflate(inflater, container, false);
+        
         return binding.root
     }
 
 
     companion object {
-        fun newInstance() : MenuFragment{
-            var fragment = MenuFragment()
+        fun newInstance() : CariFragment{
+            var fragment : CariFragment = CariFragment()
             return fragment
         }
     }
-
 
 
 }

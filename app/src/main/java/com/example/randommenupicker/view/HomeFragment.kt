@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        viewModel.getChosenMenu().observe(requireActivity(), {
+        viewModel.getRandomChosenMenu().observe(requireActivity(), {
             binding.tvResult.text = it.nama
         })
         binding.btnCari.setOnClickListener {

@@ -7,8 +7,15 @@
 
     <TextView
         android:id="@+id/tv_menu"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="50dp"
+        android:textColor="#000"
+        android:background="#5F5F"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30sp"
         />
 
 </RelativeLayout>
