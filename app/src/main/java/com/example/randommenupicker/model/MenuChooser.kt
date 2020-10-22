@@ -14,8 +14,8 @@ class MenuChooser () {
         choiceHistory = tempHist
     }
 
-    fun getMenu(listMenu: ArrayList<Menu>, historyLimit: Int): Menu{
-        var chosen: Menu
+    fun getMenu(listMenu: ArrayList<Menu>, historyLimit: Int): Menu? {
+        var chosen: Menu? = null
         val availableMenu = ArrayList<Menu>()
         trimHistory(if (historyLimit<listMenu.size) {historyLimit} else {listMenu.size-1})
         for (i in listMenu){
@@ -23,9 +23,10 @@ class MenuChooser () {
                 availableMenu.add(i)
             }
         }
-        chosen = availableMenu[(0 until availableMenu.size).random()]
-
-        choiceHistory.add(chosen)
+        if (availableMenu.size>0){
+            chosen = availableMenu[(0 until availableMenu.size).random()]
+            choiceHistory.add(chosen)
+        }
 
         return chosen
     }

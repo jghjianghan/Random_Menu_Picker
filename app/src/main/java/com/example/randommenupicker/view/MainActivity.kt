@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun changePage (p: Page){
         val ft = supportFragmentManager.beginTransaction()
-        println("changing to $p")
+
         when(p){
             Page.HOME->{
                 ft.replace(R.id.fragment_container, homeFragment)
