@@ -4,5 +4,5 @@
     <string name="fragment_home_btn_text">Cari</string>
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
-    <string name="randomEmptyMenu">Tidak ada menu yang bisa dipilih</string>
+    <string name="randomEmptyMenu">No Menu Available</string>
 </resources>
