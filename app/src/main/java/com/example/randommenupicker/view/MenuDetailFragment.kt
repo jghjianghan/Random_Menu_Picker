@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager.widget.ViewPager
+import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.FragmentMenuDetailBinding
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import com.google.android.material.tabs.TabLayout
@@ -15,6 +17,8 @@ import com.google.android.material.tabs.TabLayout
 class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private lateinit var binding : FragmentMenuDetailBinding
     private lateinit var viewModel : MainActivityViewModel
+    private lateinit var viewPager : ViewPager
+    private lateinit var tabBar : TabLayout
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -26,10 +30,17 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMenuDetailBinding.inflate(inflater, container, false)
-        var pagerAdapter = MenuDetailAdapter(requireActivity() , fragmentManager as FragmentManager, binding.tabBar.tabCount)
-        binding.viewPager.adapter = pagerAdapter
-        return binding.root
+        var view = inflater.inflate(R.layout.fragment_menu_detail, container, false)
+        viewPager = view.findViewById<ViewPager>(R.id.view_pager)
+        tabBar = view.findViewById<TabLayout>(R.id.tab_bar)
+        var pagerAdapter = MenuDetailAdapter(
+            requireActivity(),
+            fragmentManager as FragmentManager,
+            tabBar.tabCount
+        )
+        viewPager.adapter = pagerAdapter
+        tabBar.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
+        return view
     }
 
 
@@ -41,8 +52,10 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
-        var tab2 = tab as TabLayout.Tab
-        binding.viewPager.currentItem = tab2.position
+        if (tab != null){
+            viewPager.currentItem = tab.position
+        }
+
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab?) {

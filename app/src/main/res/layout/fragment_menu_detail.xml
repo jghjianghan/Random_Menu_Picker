@@ -11,16 +11,17 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi" />
+
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_langkah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Langkah Memasak" />
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tab_desc"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Deskripsi" />-->
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_resto"
@@ -31,8 +32,7 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -43,7 +43,7 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun setChosenMenu(idxItem : Int) {
-        randomChosenMenu.value = listMenu[idxItem];
+        chosenMenu.value = listMenu[idxItem];
     }
 
     fun getChosenMenu() : LiveData<Menu>{
