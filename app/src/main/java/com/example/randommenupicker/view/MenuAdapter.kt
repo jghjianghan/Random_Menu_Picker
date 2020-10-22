@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.ItemListMenuBinding
 import com.example.randommenupicker.model.Menu
+import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.item_list_nav.view.*
 
@@ -27,19 +28,14 @@ class MenuAdapter(
         init {
             view.setOnClickListener {
                 viewModel.setChosenMenu(idxItem)
+                viewModel.setPage(Page.MENU_DETAIL)
+                println("idx : " + idxItem)
             }
         }
 
         public fun updateView(menu : String){
             binding.tvMenu.text = menu
         }
-
-//        override fun onClick(v: View?) {
-//            when(v) {
-//                binding.tvMenu -> viewModel.setChosenMenu(idxItem)
-//
-//            }
-//        }
     }
 
     override fun getCount(): Int {

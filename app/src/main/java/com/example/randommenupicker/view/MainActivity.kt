@@ -74,12 +74,14 @@ class MainActivity : AppCompatActivity() {
             Page.LIST_MENU -> {
                 ft.replace(R.id.fragment_container, menuFragment)
             }
+            Page.MENU_DETAIL -> {
+                ft.replace(R.id.fragment_container, menuDetailFragment)
+            }
             Page.SETTING -> TODO()
             Page.EXIT -> {
                 this.moveTaskToBack(true)
                 this.finish()
             }
-            else -> TODO()
         }
         ft.commit()
         binding.drawerLayout.closeDrawers()

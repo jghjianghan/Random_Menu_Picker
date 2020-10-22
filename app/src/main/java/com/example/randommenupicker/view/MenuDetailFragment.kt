@@ -1,17 +1,25 @@
 package com.example.randommenupicker.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.databinding.FragmentMenuDetailBinding
+import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private lateinit var binding : FragmentMenuDetailBinding
+    private lateinit var viewModel : MainActivityViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,7 +27,7 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenuDetailBinding.inflate(inflater, container, false)
-        var pagerAdapter = MenuDetailAdapter(fragmentManager as FragmentManager, binding.tabBar.tabCount)
+        var pagerAdapter = MenuDetailAdapter(requireActivity() , fragmentManager as FragmentManager, binding.tabBar.tabCount)
         binding.viewPager.adapter = pagerAdapter
         return binding.root
     }

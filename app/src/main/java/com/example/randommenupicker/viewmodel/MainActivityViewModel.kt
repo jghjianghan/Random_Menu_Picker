@@ -9,7 +9,7 @@ class MainActivityViewModel: ViewModel() {
     private val randomizer = MenuChooser()
     private var listMenu = ArrayList<Menu>()
     private var historyLimit = 20
-    private var chosenMenu = MutableLiveData<Menu>();
+    private var chosenMenu = MutableLiveData<Menu>()
     private var randomChosenMenu = MutableLiveData<Menu>()
     private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
     private var searchHistory = MutableLiveData<ArrayList<History>>()
@@ -44,6 +44,10 @@ class MainActivityViewModel: ViewModel() {
 
     fun setChosenMenu(idxItem : Int) {
         randomChosenMenu.value = listMenu[idxItem];
+    }
+
+    fun getChosenMenu() : LiveData<Menu>{
+        return chosenMenu
     }
 
     fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{

@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         binding.btnCari.setOnClickListener {
             viewModel.getRandomMenu()
         }
+
         return binding.root
     }
 
