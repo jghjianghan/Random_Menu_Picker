@@ -11,6 +11,13 @@ class Menu (
     var listLangkah:ArrayList<String>,
     var listResto:ArrayList<String>
 ) {
+    companion object{
+        var id: Long = 0
+    }
+    var idMenu: Long
+    init {
+        idMenu = id++
+    }
     constructor():this(
         "",
         "",
@@ -40,6 +47,21 @@ class Menu (
         this.listLangkah = stringToList(listLangkah)
         this.listResto = stringToList(listResto)
     }
+
+    fun update (
+        nama:String,
+        deskripsi:String,
+        listBahan:String,
+        listTag:String,
+        listLangkah:String,
+        listResto:String
+    ){
+        this.listBahan = stringToList(listBahan)
+        this.listTag = stringToList(listTag)
+        this.listLangkah = stringToList(listLangkah)
+        this.listResto = stringToList(listResto)
+    }
+
     fun namaContains(keyword: String): Boolean{
         return containsIgnoreCase(nama, keyword);
     }
