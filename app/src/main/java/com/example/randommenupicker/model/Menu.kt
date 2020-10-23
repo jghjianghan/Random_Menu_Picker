@@ -12,9 +12,9 @@ class Menu (
     var listResto:ArrayList<String>
 ) {
     companion object{
-        var id: Long = 0
+        var id: Int = 0
     }
-    var idMenu: Long
+    var idMenu: Int
     init {
         idMenu = id++
     }
