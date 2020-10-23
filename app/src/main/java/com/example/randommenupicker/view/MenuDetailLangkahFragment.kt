@@ -25,7 +25,7 @@ class MenuDetailLangkahFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenuDetailLangkahBinding.inflate(inflater, container, false);
-        viewModel.getChosenMenu().observe(requireActivity(),{
+        viewModel.getChosenMenu().observe(this,{
             var langkah  = ""
             for((idx,value) in it.listLangkah.withIndex()) {
                 langkah += (idx+1).toString() + ". " + value + "\n"

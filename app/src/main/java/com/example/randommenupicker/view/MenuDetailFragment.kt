@@ -11,14 +11,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.FragmentMenuDetailBinding
+import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 
 class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
-    private lateinit var binding : FragmentMenuDetailBinding
     private lateinit var viewModel : MainActivityViewModel
     private lateinit var viewPager : ViewPager
     private lateinit var tabBar : TabLayout
+    private lateinit var fabBtn : FloatingActionButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,6 +35,7 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
         var view = inflater.inflate(R.layout.fragment_menu_detail, container, false)
         viewPager = view.findViewById<ViewPager>(R.id.view_pager)
         tabBar = view.findViewById<TabLayout>(R.id.tab_bar)
+        fabBtn = view.findViewById<FloatingActionButton>(R.id.fab_btn)
         var pagerAdapter = MenuDetailAdapter(
             requireActivity(),
             fragmentManager as FragmentManager,
@@ -40,6 +43,10 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
         )
         viewPager.adapter = pagerAdapter
         tabBar.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
+
+        fabBtn.setOnClickListener{
+            viewModel.setPage(Page.EDIT_MENU)
+        }
         return view
     }
 
@@ -59,12 +66,9 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab?) {
-        TODO("Not yet implemented")
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
-        TODO("Not yet implemented")
     }
-
 
 }

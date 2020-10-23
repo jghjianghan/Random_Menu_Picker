@@ -24,9 +24,9 @@ class MainActivityViewModel: ViewModel() {
     }
     fun loadMenu(){
         listMenu = arrayListOf(
-            Menu("sop", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc"),
-            Menu("burger", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc"),
-            Menu("Bihun", "bukan kuah", "1 ayam", "korea, utara", "potong, masak", "kfc")
+            Menu("sop", "sop", "1 ayam", "korea, utara", "potong, masak", "kfc"),
+            Menu("burger", "burger", "1 ayam", "korea, utara", "potong, masak", "kfc"),
+            Menu("Bihun", "Bihun", "1 ayam", "korea, utara", "potong, masak", "kfc")
         )
     }
 
@@ -38,12 +38,24 @@ class MainActivityViewModel: ViewModel() {
         return randomChosenMenu
     }
 
+    fun getMenuSize() : Int {
+        return listMenu.size
+    }
+
     fun getRandomMenu(){
         randomChosenMenu.value = randomizer.getMenu(listMenu, randomLimit.value as Int)
     }
 
-    fun setChosenMenu(idxItem : Int) {
-        chosenMenu.value = listMenu[idxItem];
+    fun setChosenMenu(idMenu : Int) {
+        println("SET CHOSEN MENU")
+        for ( menu in listMenu) {
+            if(menu.idMenu == idMenu) {
+                chosenMenu.value = menu
+                println("CHOSEN MENU : " + menu.nama)
+                return
+            }
+        }
+        chosenMenu.value = Menu("","","","","","")
     }
 
     fun getChosenMenu() : LiveData<Menu>{
@@ -98,7 +110,7 @@ class MainActivityViewModel: ViewModel() {
     ): Boolean{
         val duplicate = findMenuByName(nama)
 
-        return if (duplicate != null){
+        return if (duplicate != null){ // ada duplicate
             listMenu.remove(duplicate)
             listMenu.add(Menu(nama, deskripsi, tag, bahan, langkah, resto))
             true

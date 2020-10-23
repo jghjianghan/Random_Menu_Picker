@@ -26,7 +26,7 @@ class MenuDetailRestoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenuDetailRestoBinding.inflate(inflater, container, false);
-        viewModel.getChosenMenu().observe(requireActivity(),{
+        viewModel.getChosenMenu().observe(this,{
             var resto  = ""
             for((idx,value) in it.listResto.withIndex()) {
                 resto += (idx+1).toString() + ". " + value + "\n"

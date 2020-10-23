@@ -97,7 +97,7 @@ class Menu (
     }
     private fun stringToList(str: String): ArrayList<String>{
         var temp = ArrayList<String>()
-        var splitted = str.split(",")
+        var splitted = str.split(";")
         for (i in splitted){
             temp.add(i.trim())
         }

@@ -27,9 +27,9 @@ class MenuAdapter(
 
         init {
             view.setOnClickListener {
+                println("Idx : " + idxItem)
                 viewModel.setChosenMenu(idxItem)
                 viewModel.setPage(Page.MENU_DETAIL)
-                println("idx : " + idxItem)
             }
         }
 
@@ -56,14 +56,14 @@ class MenuAdapter(
         if(convertView == null) {
             view = inflater.inflate(R.layout.item_list_menu, parent, false)
 
-            viewHolder = ViewHolder(view, viewModel, position)
+            viewHolder = ViewHolder(view, viewModel, data[position].idMenu)
             view.setTag(viewHolder)
         } else {
             view = convertView
             viewHolder = view.tag as ViewHolder
         }
 
-        val item = (this.getItem(position) as Menu).nama
+        val item = (this.getItem(position) as Menu).nama +  " " +data[position].idMenu
         viewHolder.updateView(item)
 
         return view

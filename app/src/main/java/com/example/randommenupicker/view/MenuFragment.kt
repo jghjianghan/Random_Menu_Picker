@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.databinding.FragmentMenuBinding
 import com.example.randommenupicker.model.Menu
+import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 
 class MenuFragment : Fragment() {
@@ -36,6 +37,12 @@ class MenuFragment : Fragment() {
             adapter.updateList(it)
         })
         viewModel.loadAllMenu()
+
+        binding.fabBtn.setOnClickListener {
+            viewModel.addMenu("","","","","","")
+            viewModel.setChosenMenu(viewModel.getMenuSize() - 1)
+            viewModel.setPage(Page.EDIT_MENU)
+        }
         return binding.root
     }
 

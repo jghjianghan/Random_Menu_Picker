@@ -77,6 +77,9 @@ class MainActivity : AppCompatActivity() {
             Page.MENU_DETAIL -> {
                 ft.replace(R.id.fragment_container, menuDetailFragment)
             }
+            Page.EDIT_MENU -> {
+                ft.replace(R.id.fragment_container, menuDetailEditFragment)
+            }
             Page.SETTING -> TODO()
             Page.EXIT -> {
                 this.moveTaskToBack(true)
