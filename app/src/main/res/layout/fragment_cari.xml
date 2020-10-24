@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="Masukan keyword pencarian"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="40dp"
         android:textSize="20sp"
         />
 
