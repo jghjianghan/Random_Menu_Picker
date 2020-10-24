@@ -107,9 +107,7 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        var status = menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
-        filteredMenuList.value = filteredMenuList.value
-        return status
+        return menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
     }
 
     fun deleteMenu(

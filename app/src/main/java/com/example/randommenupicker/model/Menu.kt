@@ -56,6 +56,8 @@ class Menu (
         listLangkah:String,
         listResto:String
     ){
+        this.nama = nama
+        this.deskripsi = deskripsi
         this.listBahan = stringToList(listBahan)
         this.listTag = stringToList(listTag)
         this.listLangkah = stringToList(listLangkah)
