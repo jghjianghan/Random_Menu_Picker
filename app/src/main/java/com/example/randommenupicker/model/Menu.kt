@@ -103,4 +103,16 @@ class Menu (
         }
         return temp
     }
+
+    override fun toString(): String = """
+        id: ${idMenu}
+        nama: ${nama}
+        deskripsi: ${deskripsi}
+        bahan: ${listBahan.toString()}
+        tag: ${listTag.toString()}
+        langkah: ${listLangkah.toString()}
+        resto: ${listResto.toString()}
+        
+    """.trimIndent()
+
 }

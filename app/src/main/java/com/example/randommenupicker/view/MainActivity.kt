@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel.loadMenu(this)
 
         homeFragment = HomeFragment.newInstance()
         leftDrawerFragment = LeftDrawerFragment.newInstance()
@@ -88,5 +89,10 @@ class MainActivity : AppCompatActivity() {
         }
         ft.commit()
         binding.drawerLayout.closeDrawers()
+    }
+
+    override fun onDestroy() {
+        viewModel.writeAllMenu(this)
+        super.onDestroy()
     }
 }

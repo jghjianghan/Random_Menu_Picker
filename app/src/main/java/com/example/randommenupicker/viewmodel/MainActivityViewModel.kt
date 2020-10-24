@@ -1,5 +1,6 @@
 package com.example.randommenupicker.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,23 +16,26 @@ class MainActivityViewModel: ViewModel() {
     private var searchHistory = MutableLiveData<ArrayList<History>>()
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
+    private var menuList = MenuList()
 
     init {
         randomLimit.value = 5
         searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
-        loadMenu()
     }
     fun loadMenu(){
-        listMenu = arrayListOf(
-            Menu("sop", "sop", "1 ayam", "korea, utara", "potong, masak", "kfc"),
-            Menu("burger", "burger", "1 ayam", "korea, utara", "potong, masak", "kfc"),
-            Menu("Bihun", "Bihun", "1 ayam", "korea, utara", "potong, masak", "kfc")
-        )
+        loadAllMenu()
+    }
+    fun loadMenu(context: Context){
+        menuList.loadData(context)
+        loadAllMenu()
+    }
+    fun writeAllMenu(context: Context){
+        menuList.writeToFile(context)
     }
 
     fun loadAllMenu() {
-        filteredMenuList.value = listMenu
+        filteredMenuList.value = menuList.menuList
     }
 
     fun getRandomChosenMenu(): LiveData<Menu> {
@@ -39,16 +43,16 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun getMenuSize() : Int {
-        return listMenu.size
+        return menuList.getSize()
     }
 
     fun getRandomMenu(){
-        randomChosenMenu.value = randomizer.getMenu(listMenu, randomLimit.value as Int)
+        randomChosenMenu.value = randomizer.getMenu(menuList.menuList, randomLimit.value as Int)
     }
 
     fun setChosenMenu(idMenu : Int) {
         println("SET CHOSEN MENU")
-        for ( menu in listMenu) {
+        for ( menu in menuList.menuList) {
             if(menu.idMenu == idMenu) {
                 chosenMenu.value = menu
                 println("CHOSEN MENU : " + menu.nama)
@@ -91,16 +95,11 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        val duplicate = findMenuByName(nama)
-        return if (duplicate == null){
-            listMenu.add(Menu(nama, deskripsi, tag, bahan, langkah, resto))
-            true
-        } else {
-            false
-        }
+        return menuList.add(nama, deskripsi, tag, bahan, langkah, resto)
     }
 
     fun editMenu(
+        idMenu: Int,
         nama:String,
         deskripsi:String,
         tag:String,
@@ -108,85 +107,21 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        val duplicate = findMenuByName(nama)
-
-        return if (duplicate != null){ // ada duplicate
-            listMenu.remove(duplicate)
-            listMenu.add(Menu(nama, deskripsi, tag, bahan, langkah, resto))
-            true
-        } else {
-            false
-        }
+        return menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
     }
 
     fun deleteMenu(
-        nama:String,
+        idMenu:Int,
     ): Boolean{
-        val duplicate = findMenuByName(nama)
-
-        return if (duplicate != null){
-            listMenu.remove(duplicate)
-            true
-        } else {
-            false
-        }
+        return menuList.delete(idMenu)
     }
 
-    private fun findMenuByName(name: String): Menu? {
-        var temp: Menu? = null
-        for (i in listMenu){
-            if (i.nama.toLowerCase() == name.toLowerCase()){
-                temp = i
-                break
-            }
-        }
-        return temp
-    }
     private fun sortMenu(){
         //TODO: sort the menu list
         //not ssure if needed
     }
 
     fun searchMenu(keyword: String, category: MenuAttribute){
-        var filtered = ArrayList<Menu>()
-        when(category){
-            MenuAttribute.NAMA -> {
-                for (i in listMenu){
-                    if (i.namaContains(keyword)){
-                        filtered.add(i)
-                    }
-                }
-            }
-            MenuAttribute.DESKRIPSI -> {
-                for (i in listMenu){
-                    if (i.deskripsiContains(keyword)){
-                        filtered.add(i)
-                    }
-                }
-            }
-            MenuAttribute.BAHAN -> {
-                for (i in listMenu){
-                    if (i.bahanContains(keyword)){
-                        filtered.add(i)
-                    }
-                }
-            }
-            MenuAttribute.TAG -> {
-                for (i in listMenu){
-                    if (i.tagContains(keyword)){
-                        filtered.add(i)
-                    }
-                }
-            }
-            MenuAttribute.RESTO -> {
-                for (i in listMenu){
-                    if (i.restoContains(keyword)){
-                        filtered.add(i)
-                    }
-                }
-            }
-        }
-
         val tempHist: ArrayList<History> = searchHistory.value as ArrayList<History>
         tempHist.add(History(keyword, category))
         while (tempHist.size > historyLimit){
@@ -194,6 +129,6 @@ class MainActivityViewModel: ViewModel() {
         }
         searchHistory.value = tempHist
 
-        filteredMenuList.value = filtered
+        filteredMenuList.value = menuList.search(keyword, category)
     }
 }
