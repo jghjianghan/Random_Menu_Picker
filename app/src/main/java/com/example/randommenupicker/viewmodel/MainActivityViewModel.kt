@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.randommenupicker.model.*
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 class MainActivityViewModel: ViewModel() {
     private val randomizer = MenuChooser()
-    private var listMenu = ArrayList<Menu>()
     private var historyLimit = 20
     private var chosenMenu = MutableLiveData<Menu>()
     private var randomChosenMenu = MutableLiveData<Menu>()
@@ -40,10 +42,6 @@ class MainActivityViewModel: ViewModel() {
 
     fun getRandomChosenMenu(): LiveData<Menu> {
         return randomChosenMenu
-    }
-
-    fun getMenuSize() : Int {
-        return menuList.getSize()
     }
 
     fun getRandomMenu(){
@@ -116,9 +114,22 @@ class MainActivityViewModel: ViewModel() {
         return menuList.delete(idMenu)
     }
 
-    private fun sortMenu(){
-        //TODO: sort the menu list
-        //not ssure if needed
+    fun sortMenu(option: SortOption){
+        println("sorting")
+        if (filteredMenuList.value != null){
+            var temp = filteredMenuList.value
+            println("not null")
+            lateinit var comparator: Comparator<Menu>
+            comparator = when(option){
+                SortOption.NAME_ASC-> Comparator{ menu1: Menu, menu2:Menu -> menu1.nama.toLowerCase().compareTo(menu2.nama.toLowerCase())}
+                SortOption.NAME_DESC -> Comparator{ menu1: Menu, menu2:Menu -> -menu1.nama.toLowerCase().compareTo(menu2.nama.toLowerCase())}
+                SortOption.TIME_ADDED_ASC -> Comparator{ menu1: Menu, menu2:Menu -> -(menu1.idMenu-menu2.idMenu)}
+                else -> Comparator{ menu1: Menu, menu2:Menu -> menu1.idMenu-menu2.idMenu}
+            }
+
+            Collections.sort(temp, comparator)
+            filteredMenuList.value = temp
+        }
     }
 
     fun searchMenu(keyword: String, category: MenuAttribute){

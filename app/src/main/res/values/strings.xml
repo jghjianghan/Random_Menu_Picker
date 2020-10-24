@@ -5,6 +5,7 @@
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
     <string name="randomEmptyMenu">No Menu Available</string>
+    <string name="sort_option_label">Sort by: </string>
     <string name="titikDua">:</string>
 
 
@@ -42,5 +43,12 @@
         <item>Tag</item>
         <item>Bahan</item>
         <item>Restoran</item>
+    </string-array>
+
+    <string-array name="sort_option">
+        <item>A - Z</item>
+        <item>Z - A</item>
+        <item>Terbaru - Terlama</item>
+        <item>Terlama - Terbaru</item>
     </string-array>
 </resources>

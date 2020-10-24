@@ -166,8 +166,4 @@ class MenuList {
         }
         return filtered
     }
-
-    fun getSize(): Int{
-        return menuList.size
-    }
 }
