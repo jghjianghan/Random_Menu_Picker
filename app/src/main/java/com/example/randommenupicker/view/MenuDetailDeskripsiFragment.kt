@@ -27,6 +27,7 @@ class MenuDetailDeskripsiFragment : Fragment() {
         binding = FragmentMenuDetailDeskripsiBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this, {
             if(it != null){
+                binding.tvNama.text = it.nama
                 binding.tvDesc.text = it.deskripsi
                 var tag = ""
                 for (i in it.listTag) {

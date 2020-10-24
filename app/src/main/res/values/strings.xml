@@ -5,6 +5,36 @@
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
     <string name="randomEmptyMenu">No Menu Available</string>
+    <string name="titikDua">:</string>
+
+
+<!--    fragment cari-->
+    <string name="tv_keyword_text">Masukan keyword pencarian</string>
+    <string name="cari_btn_text">Cari</string>
+
+
+<!--    fragment menu detail deskripsi-->
+    <string name="deskripsi_tag_label_text">Tag : </string>
+    <string name="deskripsi_bahan_label_text">Bahan : </string>
+
+<!--    fragment menu detail resto-->
+    <string name="resto_label_text">Tersedia di restoran : </string>
+
+<!--    Tab Layout tabs-->
+    <string name="tab_desc_text">Deskripsi</string>
+    <string name="tab_langkah_text">Langkah Memasak</string>
+    <string name="tab_resto_text">Restoran</string>
+
+<!--    fragment menu detail edit-->
+    <string name="edit_nama_label">Nama</string>
+    <string name="edit_desc_label">Deskripsi</string>
+    <string name="edit_tag_label">Tag</string>
+    <string name="edit_bahan_label">Bahan</string>
+    <string name="edit_langkah_label">Langkah</string>
+    <string name="edit_resto_label">Tersedia di restoran</string>
+    <string name="btn_save_text">save</string>
+    <string name="btn_discard_text">discard</string>
+
 
     <string-array name="spinner_kategori">
         <item>Nama</item>

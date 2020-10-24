@@ -58,14 +58,12 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() : CariFragment{
-            var fragment : CariFragment = CariFragment()
+            var fragment = CariFragment()
             return fragment
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        var text = parent?.getItemAtPosition(position).toString()
-        Toast.makeText(parent?.context, text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

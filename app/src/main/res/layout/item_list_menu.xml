@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:paddingVertical="20dp"
         android:paddingHorizontal="50dp"
-        android:textColor="#000"
+        android:textColor="@color/colorBlack"
         android:background="#5F5F"
         android:textAlignment="center"
         android:gravity="center"

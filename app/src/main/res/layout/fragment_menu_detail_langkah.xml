@@ -8,7 +8,8 @@
         android:id="@+id/tv_langkah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="langkah"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
         />
 
 </LinearLayout>

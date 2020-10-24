@@ -70,18 +70,23 @@ class MainActivity : AppCompatActivity() {
 
         when(p){
             Page.HOME->{
+                changeToolbarTitle("Random Menu Picker")
                 ft.replace(R.id.fragment_container, homeFragment)
             }
             Page.CARI -> {
+                changeToolbarTitle("Cari")
                 ft.replace(R.id.fragment_container, cariFragment)
             }
             Page.LIST_MENU -> {
+                changeToolbarTitle("Menu")
                 ft.replace(R.id.fragment_container, menuFragment)
             }
             Page.MENU_DETAIL -> {
+                changeToolbarTitle("Menu Detail")
                 ft.replace(R.id.fragment_container, menuDetailFragment)
             }
             Page.EDIT_MENU -> {
+                changeToolbarTitle("Edit Menu")
                 ft.replace(R.id.fragment_container, menuDetailEditFragment)
             }
             Page.SETTING -> TODO()
@@ -92,6 +97,10 @@ class MainActivity : AppCompatActivity() {
         }
         ft.commit()
         binding.drawerLayout.closeDrawers()
+    }
+
+    private fun changeToolbarTitle(title : String){
+        supportActionBar?.title = title
     }
 
     override fun onDestroy() {

@@ -7,10 +7,11 @@
         android:id="@+id/tv_cari"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Masukan keyword pencarian"
+        android:text="@string/tv_keyword_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:textSize="20sp"
+        android:textColor="@color/colorBlack"
         />
 
     <EditText
@@ -25,9 +26,9 @@
         android:id="@+id/btn_cari"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="cari"
+        android:text="@string/cari_btn_text"
         android:layout_below="@+id/et_keyword"
-        android:layout_alignRight="@+id/et_keyword"
+        android:layout_alignEnd="@+id/et_keyword"
         />
 
     <Spinner
@@ -35,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_keyword"
-        android:layout_alignLeft="@+id/et_keyword"
+        android:layout_alignStart="@+id/et_keyword"
+        android:layout_marginTop="15dp"
         />
 </RelativeLayout>

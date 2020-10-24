@@ -3,126 +3,200 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_langkah"
-        android:layout_width="250dp"
+    <TextView
+        android:id="@+id/tv_nama"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_bahan"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@+id/tv_langkah" />
-
+        android:text="@string/edit_nama_label"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_nama"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
     <EditText
         android:id="@+id/et_nama"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_toRightOf="@+id/tv_nama" />
+        android:layout_toEndOf="@+id/titik2_nama"
+        android:textColor="@color/colorBlack"
+        />
 
-    <EditText
-        android:id="@+id/et_desc"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_nama"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@+id/tv_desc" />
 
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_nama"
-        android:layout_marginTop="0dp"
-        android:text="Deskripsi : "
-        android:textSize="20sp" />
+        android:text="@string/edit_desc_label"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_desc"
+        android:layout_below="@id/et_nama"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/et_desc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_nama"
+        android:layout_toEndOf="@+id/titik2_desc"
+        android:textColor="@color/colorBlack"
+        />
+
 
     <TextView
         android:id="@+id/tv_tag"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_desc"
-        android:layout_marginTop="0dp"
-        android:text="Tag : "
-        android:textSize="20sp" />
-
+        android:text="@string/edit_tag_label"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_tag"
+        android:layout_below="@id/et_desc"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
     <EditText
         android:id="@+id/et_tag"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_desc"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@+id/tv_tag" />
+        android:layout_toEndOf="@+id/titik2_tag"
+        android:textColor="@color/colorBlack"
+        />
+
 
     <TextView
         android:id="@+id/tv_bahan"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_tag"
-        android:layout_marginTop="0dp"
-        android:text="Bahan : "
-        android:textSize="20sp" />
+        android:text="@string/edit_bahan_label"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_bahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_desc"
+        android:layout_below="@id/et_tag"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/et_bahan"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_tag"
+        android:layout_toEndOf="@+id/titik2_bahan"
+        android:textColor="@color/colorBlack"
+        />
+
 
     <TextView
         android:id="@+id/tv_langkah"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_bahan"
-        android:layout_marginTop="0dp"
-        android:text="Langkah : "
-        android:textSize="20sp" />
-
+        android:text="@string/edit_langkah_label"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_langkah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_desc"
+        android:layout_below="@id/et_bahan"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
     <EditText
-        android:id="@+id/et_resto"
+        android:id="@+id/et_langkah"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_langkah"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="-2dp"
-        android:layout_toRightOf="@+id/tv_resto" />
+        android:layout_below="@id/et_bahan"
+        android:layout_toEndOf="@+id/titik2_langkah"
+        android:textColor="@color/colorBlack"
+        />
 
     <TextView
         android:id="@+id/tv_resto"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_langkah"
-        android:layout_marginTop="-2dp"
-        android:text="Tersedia di restoran : "
-        android:textSize="16sp" />
-
+        android:text="@string/edit_resto_label"
+        android:textSize="16sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/titik2_resto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titikDua"
+        android:layout_toEndOf="@+id/tv_desc"
+        android:layout_below="@id/et_langkah"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        />
     <EditText
-        android:id="@+id/et_bahan"
+        android:id="@+id/et_resto"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_tag"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@+id/tv_bahan" />
-
-    <TextView
-        android:id="@+id/tv_nama"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Nama : "
-        android:textSize="20sp" />
+        android:layout_below="@id/et_langkah"
+        android:layout_toEndOf="@+id/titik2_resto"
+        android:textColor="@color/colorBlack"
+        />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/btn_save_text"
         android:layout_below="@id/et_resto"
-        android:layout_alignParentRight="true"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentEnd="true"
         />
 
     <Button
         android:id="@+id/btn_discard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Discard"
+        android:text="@string/btn_discard_text"
         android:layout_below="@id/et_resto"
-        android:layout_toLeftOf="@id/btn_save"
+        android:layout_toStartOf="@id/btn_save"
         />
 
 
