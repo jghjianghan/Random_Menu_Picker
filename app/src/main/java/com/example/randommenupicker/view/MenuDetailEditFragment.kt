@@ -124,7 +124,7 @@ class MenuDetailEditFragment : Fragment() {
         binding.btnDiscard.setOnClickListener {
             AlertDialog.Builder(activity)
                 .setTitle("Discard")
-                .setMessage("Are you sure you want to discard this entry?")
+                .setMessage("Apakah anda yakin ingin membatalkan?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
 
                 .setPositiveButton(android.R.string.yes,

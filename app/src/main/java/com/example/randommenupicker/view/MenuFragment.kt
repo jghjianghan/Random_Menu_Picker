@@ -43,6 +43,7 @@ class MenuFragment : Fragment() {
 
         binding.fabBtn.setOnClickListener {
             viewModel.setChosenMenu(-1)
+            viewModel.setToolbarTitle("Add Menu")
             viewModel.setPage(Page.EDIT_MENU)
         }
         val spinnerAdapter = ArrayAdapter.createFromResource(requireActivity(), R.array.sort_option, android.R.layout.simple_spinner_item)

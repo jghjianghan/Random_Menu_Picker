@@ -19,6 +19,7 @@ class MainActivityViewModel: ViewModel() {
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
     private var menuList = MenuList()
+    private var toolbarTitle = MutableLiveData<String>()
 
     init {
         randomLimit.value = 5
@@ -28,6 +29,15 @@ class MainActivityViewModel: ViewModel() {
     fun loadMenu(){
         loadAllMenu()
     }
+
+    fun setToolbarTitle(title : String) {
+        toolbarTitle.value = title
+    }
+
+    fun getToolbarTitle() : LiveData<String> {
+        return toolbarTitle
+    }
+
     fun loadMenu(context: Context){
         menuList.loadData(context)
         loadAllMenu()
@@ -109,9 +119,10 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun deleteMenu(
-        idMenu:Int,
+        idMenu:Int?,
     ): Boolean{
-        return menuList.delete(idMenu)
+        if(idMenu != null) return menuList.delete(idMenu)
+        return false
     }
 
     fun sortMenu(option: SortOption){

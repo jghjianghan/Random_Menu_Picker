@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
             println("changed")
             this.changePage(it)
         })
+
+        viewModel.getToolbarTitle().observe(this, {
+            changeToolbarTitle(it)
+        })
     }
 
     private fun changePage (p: Page){
@@ -70,23 +74,22 @@ class MainActivity : AppCompatActivity() {
 
         when(p){
             Page.HOME->{
-                changeToolbarTitle("Random Menu Picker")
+                viewModel.setToolbarTitle("Random Menu Picker")
                 ft.replace(R.id.fragment_container, homeFragment)
             }
             Page.CARI -> {
-                changeToolbarTitle("Cari")
+                viewModel.setToolbarTitle("Cari")
                 ft.replace(R.id.fragment_container, cariFragment)
             }
             Page.LIST_MENU -> {
-                changeToolbarTitle("Menu")
+                viewModel.setToolbarTitle("Menu")
                 ft.replace(R.id.fragment_container, menuFragment)
             }
             Page.MENU_DETAIL -> {
-                changeToolbarTitle("Menu Detail")
+                viewModel.setToolbarTitle("Menu")
                 ft.replace(R.id.fragment_container, menuDetailFragment)
             }
             Page.EDIT_MENU -> {
-                changeToolbarTitle("Edit Menu")
                 ft.replace(R.id.fragment_container, menuDetailEditFragment)
             }
             Page.SETTING -> TODO()
