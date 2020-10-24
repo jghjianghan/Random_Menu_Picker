@@ -19,6 +19,7 @@ class MainActivityViewModel: ViewModel() {
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
     private var menuList = MenuList()
+    private var menuTitle = MutableLiveData<String>()
     private var toolbarTitle = MutableLiveData<String>()
 
     init {
@@ -85,6 +86,15 @@ class MainActivityViewModel: ViewModel() {
     fun getSearchHistory(): LiveData<ArrayList<History>>{
         return searchHistory
     }
+    fun getLastHistory(): History?{
+        if (searchHistory.value != null){
+            val size = searchHistory.value!!.size
+            if (size>0){
+                return searchHistory.value!![size-1]
+            }
+        }
+        return null
+    }
 
     fun getPage(): LiveData<Page>{
         return page
@@ -93,6 +103,14 @@ class MainActivityViewModel: ViewModel() {
         println("old page: ${page.value}")
         page.value = p
         println("new page: ${page.value}")
+    }
+
+    fun getMenuTitle(): LiveData<String>{
+        return menuTitle
+    }
+    fun setMenuTitle(title: String){
+        menuTitle.value = title
+        println("menutitle: ${menuTitle.value}")
     }
 
     fun addMenu(

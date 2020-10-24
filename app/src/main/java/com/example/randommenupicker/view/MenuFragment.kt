@@ -66,14 +66,26 @@ class MenuFragment : Fragment() {
             }
         }
 
+        viewModel.getMenuTitle().observe(this, {
+            setTitle(it)
+        })
 
         return binding.root
     }
 
+    fun setTitle(title: String){
+        if (title.isEmpty()){
+            binding.tvTitle.visibility = View.GONE
+        } else {
+            binding.tvTitle.text = title
+            binding.tvTitle.visibility = View.VISIBLE
+        }
+    }
 
     companion object {
         fun newInstance() : MenuFragment{
             var fragment = MenuFragment()
+
             return fragment
         }
     }

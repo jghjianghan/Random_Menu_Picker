@@ -13,13 +13,16 @@
     <string name="tv_keyword_text">Masukan keyword pencarian</string>
     <string name="cari_btn_text">Cari</string>
 
+    <!--    fragment menu-->
+    <string name="search_result_label">Hasil pencarian untuk\u0020</string>
+
 
 <!--    fragment menu detail deskripsi-->
     <string name="deskripsi_tag_label_text">Tag : </string>
     <string name="deskripsi_bahan_label_text">Bahan : </string>
 
 <!--    fragment menu detail resto-->
-    <string name="resto_label_text">Tersedia di restoran : </string>
+    <string name="resto_label_text">Tersedia di restoran :</string>
 
 <!--    Tab Layout tabs-->
     <string name="tab_desc_text">Deskripsi</string>

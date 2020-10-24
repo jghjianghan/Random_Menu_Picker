@@ -5,20 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.FragmentCariBinding
-import com.example.randommenupicker.databinding.FragmentMenuBinding
-import com.example.randommenupicker.model.Menu
 import com.example.randommenupicker.model.MenuAttribute
 import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
-import kotlinx.android.synthetic.main.fragment_cari.*
-import kotlinx.android.synthetic.main.fragment_cari.view.*
 
 class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding : FragmentCariBinding
@@ -36,11 +32,19 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         binding = FragmentCariBinding.inflate(inflater, container, false);
 
-        var adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.spinner_kategori, android.R.layout.simple_spinner_item)
+        var adapter = ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.spinner_kategori,
+            android.R.layout.simple_spinner_item
+        )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerKategori.adapter = adapter
         binding.spinnerKategori.onItemSelectedListener = this
         binding.btnCari.setOnClickListener {
+            val imm: InputMethodManager =
+                activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+
             var atr : MenuAttribute
             when(binding.spinnerKategori.selectedItemPosition) {
                 0 -> atr = MenuAttribute.NAMA
@@ -50,7 +54,7 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 else -> atr = MenuAttribute.RESTO
             }
             viewModel.searchMenu(binding.etKeyword.text.toString(), atr)
-            viewModel.setPage(Page.LIST_MENU)
+            viewModel.setPage(Page.LIST_MENU_DARI_CARI)
         }
         return binding.root
     }
@@ -68,6 +72,4 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
-
-
 }

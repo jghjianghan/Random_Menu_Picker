@@ -7,6 +7,7 @@ enum class Page (val text: String) {
     HOME("Home"),
     CARI("Cari"),
     LIST_MENU("Menu"),
+    LIST_MENU_DARI_CARI("Menu"),
     MENU_DETAIL("Detail Menu"),
     ADD_MENU("Tambah Menu"),
     EDIT_MENU("Ubah Menu"),
