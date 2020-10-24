@@ -26,12 +26,15 @@ class MenuDetailLangkahFragment : Fragment() {
     ): View? {
         binding = FragmentMenuDetailLangkahBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this,{
-            var langkah  = ""
-            for((idx,value) in it.listLangkah.withIndex()) {
-                langkah += (idx+1).toString() + ". " + value + "\n"
-            }
 
-            binding.tvLangkah.text = langkah
+            if(it != null) {
+                var langkah  = ""
+                for((idx,value) in it.listLangkah.withIndex()) {
+                    langkah += (idx+1).toString() + ". " + value + "\n"
+                }
+
+                binding.tvLangkah.text = langkah
+            }
         })
         return binding.root
     }

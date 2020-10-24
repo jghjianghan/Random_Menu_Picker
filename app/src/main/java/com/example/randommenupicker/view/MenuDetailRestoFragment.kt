@@ -27,12 +27,14 @@ class MenuDetailRestoFragment : Fragment() {
     ): View? {
         binding = FragmentMenuDetailRestoBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this,{
-            var resto  = ""
-            for((idx,value) in it.listResto.withIndex()) {
-                resto += (idx+1).toString() + ". " + value + "\n"
-            }
+            if(it != null) {
+                var resto  = ""
+                for((idx,value) in it.listResto.withIndex()) {
+                    resto += (idx+1).toString() + ". " + value + "\n"
+                }
 
-            binding.tvResto.text = resto
+                binding.tvResto.text = resto
+            }
         })
         return binding.root
     }

@@ -26,18 +26,20 @@ class MenuDetailDeskripsiFragment : Fragment() {
     ): View? {
         binding = FragmentMenuDetailDeskripsiBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this, {
-            binding.tvDesc.text = it.deskripsi
-            var tag = ""
-            for (i in it.listTag) {
-                tag += i + "\n"
-            }
-            binding.tvTag.text = tag
+            if(it != null){
+                binding.tvDesc.text = it.deskripsi
+                var tag = ""
+                for (i in it.listTag) {
+                    tag += i + "\n"
+                }
+                binding.tvTag.text = tag
 
-            var bahan = ""
-            for (i in it.listBahan) {
-                bahan += i + "\n"
+                var bahan = ""
+                for (i in it.listBahan) {
+                    bahan += i + "\n"
+                }
+                binding.tvBahan.text = bahan
             }
-            binding.tvBahan.text = bahan
 
 
         })

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuFragment: MenuFragment
     private lateinit var menuDetailFragment: MenuDetailFragment
     private lateinit var menuDetailEditFragment: MenuDetailEditFragment
-//    private lateinit var cariFragment: CariFragment
+    private lateinit var cariFragment: CariFragment
 
     private lateinit var fragmentManager : FragmentManager
     lateinit var viewModel: MainActivityViewModel
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         homeFragment = HomeFragment.newInstance()
         leftDrawerFragment = LeftDrawerFragment.newInstance()
+        cariFragment = CariFragment.newInstance()
         menuFragment = MenuFragment.newInstance()
         menuDetailFragment = MenuDetailFragment.newInstance()
         menuDetailEditFragment = MenuDetailEditFragment.newInstance()
@@ -71,7 +72,9 @@ class MainActivity : AppCompatActivity() {
             Page.HOME->{
                 ft.replace(R.id.fragment_container, homeFragment)
             }
-            Page.CARI -> TODO()
+            Page.CARI -> {
+                ft.replace(R.id.fragment_container, cariFragment)
+            }
             Page.LIST_MENU -> {
                 ft.replace(R.id.fragment_container, menuFragment)
             }

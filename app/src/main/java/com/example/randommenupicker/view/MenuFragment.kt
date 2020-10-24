@@ -28,19 +28,16 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMenuBinding.inflate(inflater, container, false);
-        viewModel.loadMenu()
+        binding = FragmentMenuBinding.inflate(inflater, container, false)
 
         var adapter = MenuAdapter(inflater, viewModel, ArrayList<Menu>())
         binding.listMenu.adapter = adapter
         viewModel.getFilteredMenuList().observe(requireActivity(),{
             adapter.updateList(it)
         })
-        viewModel.loadAllMenu()
 
         binding.fabBtn.setOnClickListener {
-            viewModel.addMenu("","","","","","")
-            viewModel.setChosenMenu(viewModel.getMenuSize() - 1)
+            viewModel.setChosenMenu(-1)
             viewModel.setPage(Page.EDIT_MENU)
         }
         return binding.root

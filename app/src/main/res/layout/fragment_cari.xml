@@ -21,13 +21,20 @@
         android:layout_below="@id/tv_cari"
         />
 
-    <!--    dropdown search by-->
-
     <Button
+        android:id="@+id/btn_cari"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="cari"
         android:layout_below="@+id/et_keyword"
         android:layout_alignRight="@+id/et_keyword"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_kategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_keyword"
+        android:layout_alignLeft="@+id/et_keyword"
         />
 </RelativeLayout>

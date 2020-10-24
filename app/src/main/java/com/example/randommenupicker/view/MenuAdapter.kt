@@ -63,7 +63,7 @@ class MenuAdapter(
             viewHolder = view.tag as ViewHolder
         }
 
-        val item = (this.getItem(position) as Menu).nama +  " " +data[position].idMenu
+        val item = (this.getItem(position) as Menu).nama
         viewHolder.updateView(item)
 
         return view

@@ -59,7 +59,7 @@ class MainActivityViewModel: ViewModel() {
                 return
             }
         }
-        chosenMenu.value = Menu("","","","","","")
+        chosenMenu.value = null
     }
 
     fun getChosenMenu() : LiveData<Menu>{
@@ -107,7 +107,9 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        return menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
+        var status = menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
+        filteredMenuList.value = filteredMenuList.value
+        return status
     }
 
     fun deleteMenu(

@@ -5,4 +5,12 @@
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
     <string name="randomEmptyMenu">No Menu Available</string>
+
+    <string-array name="spinner_kategori">
+        <item>Nama</item>
+        <item>Deskripsi</item>
+        <item>Tag</item>
+        <item>Bahan</item>
+        <item>Restoran</item>
+    </string-array>
 </resources>
