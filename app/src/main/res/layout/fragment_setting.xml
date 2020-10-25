@@ -87,7 +87,9 @@
             android:layout_height="wrap_content"
             android:switchMinWidth="56dp"
             android:layout_marginStart="10dp"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            tools:ignore="UseSwitchCompatOrMaterialXml"
+            android:layout_gravity="center"
+            />
 
     </LinearLayout>
 

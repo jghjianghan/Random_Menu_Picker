@@ -9,7 +9,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:paddingBottom="30dp"
+        android:layout_margin="10dp"
+        >
 
         <TextView
             android:id="@+id/tv_nama"
@@ -18,8 +20,6 @@
             android:text="@string/edit_nama_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:textStyle="bold"
 
             />
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
-            android:layout_marginHorizontal="10dp"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
@@ -45,7 +44,6 @@
             android:text="@string/edit_desc_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
 
             />
@@ -53,7 +51,6 @@
             android:id="@+id/et_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:textColor="@color/colorBlack"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
@@ -71,7 +68,6 @@
             android:text="@string/edit_tag_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
             />
         <EditText
@@ -79,7 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
-            android:layout_marginHorizontal="10dp"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
@@ -96,14 +91,12 @@
             android:text="@string/edit_bahan_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
             />
         <EditText
             android:id="@+id/et_bahan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:textColor="@color/colorBlack"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
@@ -115,12 +108,11 @@
 
         <TextView
             android:id="@+id/tv_langkah"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_langkah_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
             />
         <EditText
@@ -128,7 +120,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
-            android:layout_marginHorizontal="10dp"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
@@ -144,7 +135,6 @@
             android:text="@string/edit_resto_label"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
             />
         <EditText
@@ -152,7 +142,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
-            android:layout_marginHorizontal="10dp"
             android:background="@drawable/edit_text_border"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
@@ -166,7 +155,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
             >
 
