@@ -76,6 +76,11 @@ class MainActivity : AppCompatActivity() {
                 viewModel.writeAllMenu(this)
             }
         })
+        viewModel.getWriteHistoryFlag().observe(this, {
+            if (it){
+                viewModel.writeAllHistory(this)
+            }
+        })
     }
 
     private fun changePage(p: Page){
@@ -129,9 +134,5 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
-    }
-
-    fun writeMenu (){
-        viewModel.writeAllMenu(this)
     }
 }

@@ -22,17 +22,16 @@ class MainActivityViewModel: ViewModel() {
     private var menuTitle = MutableLiveData<String>()
     private var toolbarTitle = MutableLiveData<String>()
     private var writeMenuFlag = MutableLiveData<Boolean>()
+    private var writeHistoryFlag = MutableLiveData<Boolean>()
     private var searchHistoryStatus = MutableLiveData<Boolean>()
+    private var historyList: HistoryList
 
     init {
         randomLimit.value = 0
-        searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
         searchHistoryStatus.value = true
         writeMenuFlag.value = true
-    }
-    fun loadMenu(){
-        loadAllMenu()
+        historyList = HistoryList(historyLimit)
     }
 
     fun getSearchHistoryStatus() : LiveData<Boolean>{
@@ -145,6 +144,13 @@ class MainActivityViewModel: ViewModel() {
         writeMenuFlag.value = boolean
     }
 
+    fun getWriteHistoryFlag(): LiveData<Boolean>{
+        return writeHistoryFlag
+    }
+    fun setWriteHistoryFlag(boolean: Boolean){
+        writeHistoryFlag.value = boolean
+    }
+
     fun addMenu(
         nama:String,
         deskripsi:String,
@@ -213,15 +219,25 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun searchMenu(keyword: String, category: MenuAttribute){
-        val tempHist: ArrayList<History> = searchHistory.value as ArrayList<History>
         if (searchHistoryStatus.value as Boolean){
-            tempHist.add(History(keyword, category))
-            while (tempHist.size > historyLimit){
-                tempHist.removeAt(0)
-            }
-            searchHistory.value = tempHist
+            historyList.add(keyword, category)
+            loadHistory()
         }
-
         filteredMenuList.value = menuList.search(keyword, category)
+        setWriteHistoryFlag(true)
+    }
+
+    fun clearHistory(){
+        historyList.clear()
+        loadHistory()
+        setWriteHistoryFlag(true)
+    }
+
+    fun writeAllHistory(context: Context){
+        historyList.writeToFile(context)
+    }
+
+    fun loadHistory(){
+        searchHistory.value = historyList.historyList
     }
 }

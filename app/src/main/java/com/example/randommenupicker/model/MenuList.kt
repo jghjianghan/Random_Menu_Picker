@@ -11,17 +11,6 @@ class MenuList {
     companion object {
         const val FILENAME = "menudata.txt"
     }
-    init {
-        loadData()
-    }
-
-    fun loadData(){
-        menuList = arrayListOf(
-            Menu("sop", "bukan kuah", "1 ayam", "korea; utara", "potong; masak", "kfc"),
-            Menu("burger", "bukan kuah", "1 ayam", "korea; utara", "potong; masak", "kfc"),
-            Menu("Bihun", "bukan kuah", "1 ayam", "korea; utara", "potong; masak", "kfc")
-        )
-    }
     fun loadData(context: Context){
         //from file
         var file = File(context.getExternalFilesDir(null), FILENAME)
@@ -32,8 +21,6 @@ class MenuList {
         } catch (e: IOException) {
             println("data file not found")
         }
-
-        menuList.forEach{menu -> println(menu)}
 
         var maxId = -1
         for (i in menuList){
@@ -67,7 +54,6 @@ class MenuList {
                 e.printStackTrace()
             }
         }
-
     }
 
     fun add(
