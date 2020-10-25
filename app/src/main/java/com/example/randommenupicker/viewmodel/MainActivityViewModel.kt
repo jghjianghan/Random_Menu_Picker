@@ -40,6 +40,7 @@ class MainActivityViewModel: ViewModel() {
         historyList = HistoryList(historyLimit)
         liveMenu.value = menuList.menuList
         liveSortOption.value = SortOption.NAME_ASC
+        searchBarKeyword.value = ""
     }
 
     fun getSearchBarKeyword() : LiveData<String> {
@@ -192,9 +193,7 @@ class MainActivityViewModel: ViewModel() {
         val newMenu = Menu(nama, deskripsi, tag, bahan, langkah, resto)
         val success = menuList.add(newMenu)
         println("new menu added")
-//        if (filteredMenuList.value != menuList.menuList){
-//            filteredMenuList.value?.add(newMenu)
-//        }
+
         if (success){
             setWriteMenuFlag(true)
         }
@@ -222,19 +221,7 @@ class MainActivityViewModel: ViewModel() {
     ): Boolean{
         if(idMenu != null){
             val success = menuList.delete(idMenu)
-//            if (filteredMenuList.value != menuList.menuList){
-//                var pos = -1
-//                val ref = filteredMenuList.value as ArrayList<Menu>
-//                for ((idx, value) in ref.withIndex()){
-//                    if (value.idMenu == idMenu){
-//                        pos = idx
-//                        break
-//                    }
-//                }
-//                if (pos != -1){
-//                    ref.removeAt(pos)
-//                }
-//            }
+
             if (success){
                 setWriteMenuFlag(true)
             }
@@ -277,12 +264,12 @@ class MainActivityViewModel: ViewModel() {
         historyList.writeToFile(context)
     }
 
-    fun loadHistory(){
+    private fun loadHistory(){
         searchHistory.value = historyList.historyList
     }
 
     fun deleteHistory(historyId : Int) : Boolean {
-        var res = historyList.delete(historyId)
+        val res = historyList.delete(historyId)
         loadHistory()
         return res
     }
