@@ -1,6 +1,7 @@
 package com.example.randommenupicker.view
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,20 +22,21 @@ class MenuAdapter(
     private class ViewHolder (
         private var view: View,
         private var viewModel : MainActivityViewModel,
-        private var idxItem : Int
+        private var menu : Menu
     ) {
         private var binding = ItemListMenuBinding.bind(view)
 
         init {
             view.setOnClickListener {
-                println("Idx : " + idxItem)
-                viewModel.setChosenMenu(idxItem)
+                println("Idx : " + menu.idMenu)
+                viewModel.setChosenMenu(menu.idMenu)
                 viewModel.setPage(Page.MENU_DETAIL)
             }
         }
 
-        public fun updateView(menu : String){
-            binding.tvMenu.text = menu
+        fun updateView(menuData : Menu){
+            binding.tvMenu.text = menuData.nama
+            menu = menuData
         }
     }
 
@@ -56,21 +58,21 @@ class MenuAdapter(
         if(convertView == null) {
             view = inflater.inflate(R.layout.item_list_menu, parent, false)
 
-            viewHolder = ViewHolder(view, viewModel, data[position].idMenu)
-            view.setTag(viewHolder)
+            viewHolder = ViewHolder(view, viewModel, data[position])
+            view.tag = viewHolder
         } else {
             view = convertView
             viewHolder = view.tag as ViewHolder
         }
 
-        val item = (this.getItem(position) as Menu).nama
+        val item = (this.getItem(position) as Menu)
         viewHolder.updateView(item)
 
         return view
     }
 
     fun updateList (list : ArrayList<Menu>) {
-        this.data = ArrayList<Menu>(list)
+        this.data = ArrayList(list)
         notifyDataSetChanged()
     }
 }
