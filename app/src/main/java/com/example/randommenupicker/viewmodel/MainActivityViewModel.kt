@@ -41,6 +41,7 @@ class MainActivityViewModel: ViewModel() {
         liveMenu.value = menuList.menuList
         liveSortOption.value = SortOption.NAME_ASC
         searchBarKeyword.value = ""
+        liveCategory.value = MenuAttribute.NAMA
     }
 
     fun getSearchBarKeyword() : LiveData<String> {
@@ -80,7 +81,6 @@ class MainActivityViewModel: ViewModel() {
         setWriteMenuFlag(false)
     }
 
-
     fun getRandomChosenMenu(): LiveData<Menu> {
         return randomChosenMenu
     }
@@ -105,9 +105,6 @@ class MainActivityViewModel: ViewModel() {
         return chosenMenu
     }
 
-//    fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{
-//        return filteredMenuList
-//    }
     fun getLiveMenu(): LiveData<ArrayList<Menu>>{
         return liveMenu
     }

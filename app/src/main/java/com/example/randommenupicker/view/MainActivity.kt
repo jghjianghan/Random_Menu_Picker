@@ -95,12 +95,13 @@ class MainActivity : AppCompatActivity() {
             }
             Page.LIST_MENU -> {
                 viewModel.setMenuTitle("")
+                viewModel.setSearchBarKeyword("")
                 ft.replace(R.id.fragment_container, menuFragment)
             }
             Page.LIST_MENU_DARI_CARI -> {
                 println("list menu dari cari")
                 val lastHist = viewModel.getLastHistory()
-                viewModel.setMenuTitle(getString(R.string.search_result_label) + "\"${lastHist?.keyword}\"")
+                viewModel.setMenuTitle(getString(R.string.search_result_label) + "\"${viewModel.getSearchBarKeyword().value}\"")
                 ft.replace(R.id.fragment_container, menuFragment).addToBackStack(null)
             }
             Page.MENU_DETAIL -> {

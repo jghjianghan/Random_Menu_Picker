@@ -65,7 +65,7 @@ class MenuFragment : Fragment() {
         })
         viewModel.getSearchBarKeyword().observe(this, {
             println("keyword berubah")
-            adapter.filterData(it, viewModel.getLiveCategory() as MenuAttribute)
+            adapter.filterData(it, viewModel.getLiveCategory().value as MenuAttribute)
         })
 
         binding.fabBtn.setOnClickListener {

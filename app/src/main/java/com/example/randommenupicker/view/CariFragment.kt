@@ -34,7 +34,7 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCariBinding.inflate(inflater, container, false);
-
+        viewModel.setSearchBarKeyword("")
         var adapter = ArrayAdapter.createFromResource(
             requireActivity(),
             R.array.spinner_kategori,
@@ -77,9 +77,10 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     3 -> atr = MenuAttribute.BAHAN
                     else -> atr = MenuAttribute.RESTO
                 }
-                viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+//                viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+                viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
+                viewModel.setLiveCategory(atr)
                 binding.searchBar.setQuery("", false);
-                viewModel.setSearchBarKeyword("")
                 viewModel.setPage(Page.LIST_MENU_DARI_CARI)
                 return false
             }
@@ -111,9 +112,10 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 3 -> atr = MenuAttribute.BAHAN
                 else -> atr = MenuAttribute.RESTO
             }
-            viewModel.searchMenu(binding.searchBar.query.toString(), atr)
-            binding.searchBar.setQuery("", false);
-            viewModel.setSearchBarKeyword("")
+//            viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+            viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
+            viewModel.setLiveCategory(atr)
+            binding.searchBar.setQuery("", false)
             viewModel.setPage(Page.LIST_MENU_DARI_CARI)
         }
         viewModel.setToolbarTitle("Cari")
@@ -129,6 +131,14 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        viewModel.setLiveCategory(
+            when(binding.spinnerKategori.selectedItemPosition) {
+            0 -> MenuAttribute.NAMA
+            1 -> MenuAttribute.DESKRIPSI
+            2 -> MenuAttribute.TAG
+            3 -> MenuAttribute.BAHAN
+            else -> MenuAttribute.RESTO
+        })
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
