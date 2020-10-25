@@ -20,6 +20,7 @@
         android:layout_below="@+id/tv_nama"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
+        android:visibility="gone"
         />
 
     <TextView

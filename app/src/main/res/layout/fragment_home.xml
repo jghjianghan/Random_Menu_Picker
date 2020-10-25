@@ -31,6 +31,8 @@
         android:text="@string/fragment_home_btn_text"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/separator"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/colorWhite"
 
         />
 

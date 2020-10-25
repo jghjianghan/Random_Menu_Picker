@@ -1,7 +1,7 @@
 package com.example.randommenupicker.view
 
 import android.os.Bundle
-import android.widget.ListView
+import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun changePage (p: Page){
+    private fun changePage(p: Page){
         val ft = supportFragmentManager.beginTransaction()
 
         when(p){
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         binding.drawerLayout.closeDrawers()
     }
 
-    private fun changeToolbarTitle(title : String){
+    private fun changeToolbarTitle(title: String){
         supportActionBar?.title = title
     }
 

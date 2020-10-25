@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:paddingVertical="20dp"
         android:paddingHorizontal="50dp"
-        android:textColor="@color/colorBlack"
-        android:background="#5F5F"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/rounded_corner"
         android:textAlignment="center"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
         />
 
 </RelativeLayout>

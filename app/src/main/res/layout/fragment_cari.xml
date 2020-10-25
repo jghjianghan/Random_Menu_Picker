@@ -20,6 +20,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_cari"
+        android:background="@drawable/edit_text_border"
+        android:layout_margin="15dp"
+        android:hint="@string/et_keyword_text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:maxLength="40"
         />
 
     <Button
@@ -29,6 +35,8 @@
         android:text="@string/cari_btn_text"
         android:layout_below="@+id/et_keyword"
         android:layout_alignEnd="@+id/et_keyword"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/colorWhite"
         />
 
     <Spinner

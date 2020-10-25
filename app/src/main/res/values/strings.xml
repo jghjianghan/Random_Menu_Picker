@@ -1,17 +1,18 @@
 <resources>
     <string name="app_name">Random Menu Picker</string>
     <string name="fragment_home_tv_text">Makan Apa \n Hari Ini?</string>
-    <string name="fragment_home_btn_text">Cari</string>
+    <string name="fragment_home_btn_text">aku tidak tau</string>
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
     <string name="randomEmptyMenu">No Menu Available</string>
     <string name="sort_option_label">Sort by: </string>
-    <string name="titikDua">:</string>
 
 
 <!--    fragment cari-->
-    <string name="tv_keyword_text">Masukan keyword pencarian</string>
+    <string name="tv_keyword_text">Mau cari makanan apa ?</string>
+    <string name="et_keyword_text">contoh : nasi goreng</string>
     <string name="cari_btn_text">Cari</string>
+
 
     <!--    fragment menu-->
     <string name="search_result_label">Hasil pencarian untuk\u0020</string>

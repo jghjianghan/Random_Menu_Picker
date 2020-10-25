@@ -1,124 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_nama"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_nama_label"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_nama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_nama"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textStyle="bold"
+
         />
     <EditText
         android:id="@+id/et_nama"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/titik2_nama"
         android:textColor="@color/colorBlack"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:maxLength="40"
         />
 
 
     <TextView
         android:id="@+id/tv_desc"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_nama"
         android:text="@string/edit_desc_label"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_desc"
-        android:layout_below="@id/et_nama"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textStyle="bold"
+
         />
     <EditText
         android:id="@+id/et_desc"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_nama"
-        android:layout_toEndOf="@+id/titik2_desc"
+        android:layout_marginHorizontal="10dp"
         android:textColor="@color/colorBlack"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:maxLength="100"
         />
 
 
     <TextView
         android:id="@+id/tv_tag"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_desc"
         android:text="@string/edit_tag_label"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_tag"
-        android:layout_below="@id/et_desc"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textStyle="bold"
         />
     <EditText
         android:id="@+id/et_tag"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_desc"
-        android:layout_toEndOf="@+id/titik2_tag"
         android:textColor="@color/colorBlack"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         />
 
 
     <TextView
         android:id="@+id/tv_bahan"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_tag"
         android:text="@string/edit_bahan_label"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_bahan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_desc"
-        android:layout_below="@id/et_tag"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textStyle="bold"
         />
     <EditText
         android:id="@+id/et_bahan"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_tag"
-        android:layout_toEndOf="@+id/titik2_bahan"
+        android:layout_marginHorizontal="10dp"
         android:textColor="@color/colorBlack"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         />
 
 
@@ -126,78 +110,77 @@
         android:id="@+id/tv_langkah"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_bahan"
         android:text="@string/edit_langkah_label"
         android:textSize="20sp"
         android:textColor="@color/colorBlack"
         android:layout_marginStart="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_langkah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_desc"
-        android:layout_below="@id/et_bahan"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textStyle="bold"
         />
     <EditText
         android:id="@+id/et_langkah"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_bahan"
-        android:layout_toEndOf="@+id/titik2_langkah"
         android:textColor="@color/colorBlack"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         />
 
     <TextView
         android:id="@+id/tv_resto"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_langkah"
-        android:text="@string/edit_resto_label"
-        android:textSize="16sp"
-        android:textColor="@color/colorBlack"
-        android:layout_marginStart="10dp"
-        />
-    <TextView
-        android:id="@+id/titik2_resto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titikDua"
-        android:layout_toEndOf="@+id/tv_desc"
-        android:layout_below="@id/et_langkah"
-        android:textColor="@color/colorBlack"
+        android:text="@string/edit_resto_label"
         android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
         />
     <EditText
         android:id="@+id/et_resto"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_langkah"
-        android:layout_toEndOf="@+id/titik2_resto"
         android:textColor="@color/colorBlack"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         />
 
-    <Button
-        android:id="@+id/btn_save"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_save_text"
-        android:layout_below="@id/et_resto"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
         android:layout_marginEnd="30dp"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_marginTop="15dp"
+        >
 
-    <Button
-        android:id="@+id/btn_discard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_discard_text"
-        android:layout_below="@id/et_resto"
-        android:layout_toStartOf="@id/btn_save"
-        />
+        <Button
+            android:id="@+id/btn_discard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_discard_text"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/colorLightGray"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginEnd="10dp"
+            />
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save_text"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
 
 
-</RelativeLayout>
+
+</LinearLayout>
