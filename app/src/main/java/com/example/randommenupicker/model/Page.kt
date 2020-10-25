@@ -13,7 +13,8 @@ enum class Page (val text: String) {
     EDIT_MENU("Ubah Menu"),
     HAPUS_MENU("Ubah Menu"),
     SETTING("Setting"),
-    EXIT("Exit");
+    EXIT("Exit"),
+    POP_PAGE("Pop");
 
     companion object{
         fun getNavMenu() : Array<Page>{

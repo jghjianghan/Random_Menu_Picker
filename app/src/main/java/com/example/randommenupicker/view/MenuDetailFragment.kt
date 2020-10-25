@@ -69,7 +69,7 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
                             val toast = Toast.makeText(activity, text, duration)
                             toast.show()
                         }
-
+                        viewModel.setPage(Page.POP_PAGE)
                         viewModel.setPage(Page.LIST_MENU)
                     })
                 .setNegativeButton(android.R.string.no, null)
@@ -77,7 +77,7 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 .show()
         }
 
-        viewModel.setToolbarTitle("Menu")
+        viewModel.setToolbarTitle("Menu Detail")
         return view
     }
 

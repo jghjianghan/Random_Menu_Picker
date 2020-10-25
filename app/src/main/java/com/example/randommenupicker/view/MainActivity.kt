@@ -90,15 +90,18 @@ class MainActivity : AppCompatActivity() {
                 ft.replace(R.id.fragment_container, menuFragment).addToBackStack(null)
             }
             Page.MENU_DETAIL -> {
-                ft.replace(R.id.fragment_container, menuDetailFragment)
+                ft.replace(R.id.fragment_container, menuDetailFragment).addToBackStack(null)
             }
             Page.EDIT_MENU -> {
-                ft.replace(R.id.fragment_container, menuDetailEditFragment)
+                ft.replace(R.id.fragment_container, menuDetailEditFragment).addToBackStack(null)
             }
             Page.SETTING -> TODO()
             Page.EXIT -> {
                 this.moveTaskToBack(true)
                 this.finish()
+            }
+            Page.POP_PAGE -> {
+                supportFragmentManager.popBackStackImmediate()
             }
         }
         ft.commit()

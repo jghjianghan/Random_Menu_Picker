@@ -118,7 +118,7 @@ class MenuDetailEditFragment : Fragment() {
                     toast.show()
                 }
             }
-            viewModel.setPage(Page.MENU_DETAIL)
+            viewModel.setPage(Page.POP_PAGE)
         }
 
         binding.btnDiscard.setOnClickListener {
@@ -129,7 +129,7 @@ class MenuDetailEditFragment : Fragment() {
 
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
-                        viewModel.setPage(Page.MENU_DETAIL)
+                        viewModel.setPage(Page.POP_PAGE)
                     })
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
