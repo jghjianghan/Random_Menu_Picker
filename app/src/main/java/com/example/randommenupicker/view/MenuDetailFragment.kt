@@ -77,6 +77,7 @@ class MenuDetailFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 .show()
         }
 
+        viewModel.setToolbarTitle("Menu")
         return view
     }
 

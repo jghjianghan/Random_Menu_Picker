@@ -56,6 +56,7 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
             viewModel.searchMenu(binding.etKeyword.text.toString(), atr)
             viewModel.setPage(Page.LIST_MENU_DARI_CARI)
         }
+        viewModel.setToolbarTitle("Cari")
         return binding.root
     }
 

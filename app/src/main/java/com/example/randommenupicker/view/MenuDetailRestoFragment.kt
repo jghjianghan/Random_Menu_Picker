@@ -36,6 +36,7 @@ class MenuDetailRestoFragment : Fragment() {
                 binding.tvResto.text = resto
             }
         })
+
         return binding.root
     }
 

@@ -74,27 +74,22 @@ class MainActivity : AppCompatActivity() {
 
         when(p){
             Page.HOME -> {
-                viewModel.setToolbarTitle("Random Menu Picker")
                 ft.replace(R.id.fragment_container, homeFragment)
             }
             Page.CARI -> {
-                viewModel.setToolbarTitle("Cari")
                 ft.replace(R.id.fragment_container, cariFragment)
             }
             Page.LIST_MENU -> {
-                viewModel.setToolbarTitle("Menu")
                 viewModel.setMenuTitle("")
                 ft.replace(R.id.fragment_container, menuFragment)
             }
             Page.LIST_MENU_DARI_CARI -> {
                 println("list menu dari cari")
-                changeToolbarTitle("Menu")
                 val lastHist = viewModel.getLastHistory()
                 viewModel.setMenuTitle(getString(R.string.search_result_label) + "\"${lastHist?.keyword}\"")
                 ft.replace(R.id.fragment_container, menuFragment).addToBackStack(null)
             }
             Page.MENU_DETAIL -> {
-                viewModel.setToolbarTitle("Menu")
                 ft.replace(R.id.fragment_container, menuDetailFragment)
             }
             Page.EDIT_MENU -> {

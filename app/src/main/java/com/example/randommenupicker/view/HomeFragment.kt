@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         binding.btnCari.setOnClickListener {
             viewModel.getRandomMenu()
         }
-
+        viewModel.setToolbarTitle("Random Menu Picker")
         return binding.root
     }
 

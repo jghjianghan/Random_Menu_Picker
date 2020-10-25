@@ -69,7 +69,7 @@ class MenuFragment : Fragment() {
         viewModel.getMenuTitle().observe(this, {
             setTitle(it)
         })
-
+        viewModel.setToolbarTitle("Menu")
         return binding.root
     }
 
