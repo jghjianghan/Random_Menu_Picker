@@ -36,7 +36,6 @@ class NavAdapter(
         view.tv_nav.text = item.text
         view.setOnClickListener{
             println(view.tag)
-            if(view.tag as Page == Page.LIST_MENU) viewModel.loadAllMenu()
             viewModel.setPage(view.tag as Page)
         }
 

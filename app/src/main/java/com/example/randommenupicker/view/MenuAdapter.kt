@@ -9,14 +9,19 @@ import android.widget.BaseAdapter
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.ItemListMenuBinding
 import com.example.randommenupicker.model.Menu
+import com.example.randommenupicker.model.MenuAttribute
 import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.item_list_nav.view.*
+import java.util.*
+import java.util.function.Predicate
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 class MenuAdapter(
     private val inflater: LayoutInflater,
     private val viewModel: MainActivityViewModel,
-    private var data : ArrayList<Menu>
+    private var data : List<Menu>
 ): BaseAdapter() {
 
     private class ViewHolder (
@@ -73,6 +78,23 @@ class MenuAdapter(
 
     fun updateList (list : ArrayList<Menu>) {
         this.data = ArrayList(list)
+        notifyDataSetChanged()
+        println("update: adapter size ${count}")
+    }
+
+    fun sortData(comparator: Comparator<Menu>){
+        Collections.sort(data, comparator)
+        notifyDataSetChanged()
+        println("sort: adapter size ${count}")
+    }
+    fun filterData(keyword:String, category: MenuAttribute){
+        data = when (category){
+            MenuAttribute.NAMA -> data.filter {it.namaContains(keyword)}
+            MenuAttribute.DESKRIPSI -> data.filter {it.deskripsiContains(keyword)}
+            MenuAttribute.BAHAN -> data.filter {it.bahanContains(keyword)}
+            MenuAttribute.TAG -> data.filter {it.tagContains(keyword)}
+            MenuAttribute.RESTO -> data.filter {it.restoContains(keyword)}
+        }
         notifyDataSetChanged()
     }
 }

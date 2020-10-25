@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.randommenupicker.model.*
 import java.util.*
+import java.util.function.Predicate
 import kotlin.Comparator
 import kotlin.collections.ArrayList
 
@@ -14,7 +15,7 @@ class MainActivityViewModel: ViewModel() {
     private var historyLimit = 20
     private var chosenMenu = MutableLiveData<Menu>()
     private var randomChosenMenu = MutableLiveData<Menu>()
-    private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
+//    private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
     private var searchHistory = MutableLiveData<ArrayList<History>>()
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
@@ -26,13 +27,19 @@ class MainActivityViewModel: ViewModel() {
     private var searchHistoryStatus = MutableLiveData<Boolean>()
     private var historyList: HistoryList
     private var searchBarKeyword = MutableLiveData<String>()
+    private var liveMenu = MutableLiveData<ArrayList<Menu>>()
+    private var liveSortOption = MutableLiveData<SortOption>()
+    private var liveCategory = MutableLiveData<MenuAttribute>()
+
 
     init {
         randomLimit.value = 0
         page.value = Page.HOME
-        searchHistoryStatus.value = true
-        writeMenuFlag.value = true
+        searchHistoryStatus.value = false
+        writeMenuFlag.value = false
         historyList = HistoryList(historyLimit)
+        liveMenu.value = menuList.menuList
+        liveSortOption.value = SortOption.NAME_ASC
     }
 
     fun getSearchBarKeyword() : LiveData<String> {
@@ -65,16 +72,13 @@ class MainActivityViewModel: ViewModel() {
     fun loadAllData(context: Context){
         menuList.loadData(context)
         //sharedPref
-        loadAllMenu()
+        liveMenu.value = menuList.menuList
     }
     fun writeAllMenu(context: Context){
         menuList.writeToFile(context)
         setWriteMenuFlag(false)
     }
 
-    fun loadAllMenu() {
-        filteredMenuList.value = menuList.menuList
-    }
 
     fun getRandomChosenMenu(): LiveData<Menu> {
         return randomChosenMenu
@@ -100,8 +104,11 @@ class MainActivityViewModel: ViewModel() {
         return chosenMenu
     }
 
-    fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{
-        return filteredMenuList
+//    fun getFilteredMenuList(): LiveData<ArrayList<Menu>>{
+//        return filteredMenuList
+//    }
+    fun getLiveMenu(): LiveData<ArrayList<Menu>>{
+        return liveMenu
     }
 
     fun getRandomLimit(): LiveData<Int>{
@@ -161,6 +168,19 @@ class MainActivityViewModel: ViewModel() {
         writeHistoryFlag.value = boolean
     }
 
+    fun getSortOption(): LiveData<SortOption>{
+        return liveSortOption
+    }
+    fun setSortOption(sortOption: SortOption){
+        liveSortOption.value = sortOption
+    }
+    fun getLiveCategory(): LiveData<MenuAttribute>{
+        return liveCategory
+    }
+    fun setLiveCategory(atr: MenuAttribute){
+        liveCategory.value = atr
+    }
+
     fun addMenu(
         nama:String,
         deskripsi:String,
@@ -169,7 +189,12 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        val success = menuList.add(nama, deskripsi, tag, bahan, langkah, resto)
+        val newMenu = Menu(nama, deskripsi, tag, bahan, langkah, resto)
+        val success = menuList.add(newMenu)
+        println("new menu added")
+//        if (filteredMenuList.value != menuList.menuList){
+//            filteredMenuList.value?.add(newMenu)
+//        }
         if (success){
             setWriteMenuFlag(true)
         }
@@ -197,6 +222,19 @@ class MainActivityViewModel: ViewModel() {
     ): Boolean{
         if(idMenu != null){
             val success = menuList.delete(idMenu)
+//            if (filteredMenuList.value != menuList.menuList){
+//                var pos = -1
+//                val ref = filteredMenuList.value as ArrayList<Menu>
+//                for ((idx, value) in ref.withIndex()){
+//                    if (value.idMenu == idMenu){
+//                        pos = idx
+//                        break
+//                    }
+//                }
+//                if (pos != -1){
+//                    ref.removeAt(pos)
+//                }
+//            }
             if (success){
                 setWriteMenuFlag(true)
             }
@@ -210,22 +248,11 @@ class MainActivityViewModel: ViewModel() {
         setWriteMenuFlag(true)
     }
 
-    fun sortMenu(option: SortOption){
-        println("sorting")
-        if (filteredMenuList.value != null){
-            var temp = filteredMenuList.value
-            println("not null")
-            lateinit var comparator: Comparator<Menu>
-            comparator = when(option){
-                SortOption.NAME_ASC-> Comparator{ menu1: Menu, menu2:Menu -> menu1.nama.toLowerCase().compareTo(menu2.nama.toLowerCase())}
-                SortOption.NAME_DESC -> Comparator{ menu1: Menu, menu2:Menu -> -menu1.nama.toLowerCase().compareTo(menu2.nama.toLowerCase())}
-                SortOption.TIME_ADDED_ASC -> Comparator{ menu1: Menu, menu2:Menu -> -(menu1.idMenu-menu2.idMenu)}
-                else -> Comparator{ menu1: Menu, menu2:Menu -> menu1.idMenu-menu2.idMenu}
-            }
-
-            Collections.sort(temp, comparator)
-            filteredMenuList.value = temp
-        }
+    fun getMenuSortComparator(option: SortOption): Comparator<Menu>{
+        return MenuList.getMenuSortComparator(option)
+    }
+    fun getMenuSortComparator(): Comparator<Menu>{
+        return MenuList.getMenuSortComparator(liveSortOption.value as SortOption)
     }
 
     fun searchMenu(keyword: String, category: MenuAttribute){
@@ -233,8 +260,11 @@ class MainActivityViewModel: ViewModel() {
             historyList.add(keyword, category)
             loadHistory()
         }
-        filteredMenuList.value = menuList.search(keyword, category)
+
         setWriteHistoryFlag(true)
+    }
+    fun getSearchFilterPredicate(keyword: String, category: MenuAttribute): Predicate<Menu>{
+        return MenuList.getSearchFilterPredicate(keyword, category)
     }
 
     fun clearHistory(){

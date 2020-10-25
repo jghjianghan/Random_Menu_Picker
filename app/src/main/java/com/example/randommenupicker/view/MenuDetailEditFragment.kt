@@ -100,7 +100,6 @@ class MenuDetailEditFragment : Fragment() {
                 }
 
             }else {
-
                 if (viewModel.editMenu(
                         menuId,
                         binding.etNama.text.toString(),

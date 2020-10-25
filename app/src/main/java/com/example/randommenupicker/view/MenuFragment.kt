@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.FragmentMenuBinding
 import com.example.randommenupicker.model.Menu
+import com.example.randommenupicker.model.MenuAttribute
 import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.model.SortOption
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
@@ -37,13 +38,34 @@ class MenuFragment : Fragment() {
 
         var adapter = MenuAdapter(inflater, viewModel, ArrayList<Menu>())
         binding.listMenu.adapter = adapter
-        viewModel.getFilteredMenuList().observe(requireActivity(),{
-            adapter.updateList(it)
-            if (it.size==0){
+        adapter.updateList(viewModel.getLiveMenu().value as ArrayList<Menu>)
+        viewModel.getLiveMenu().observe(this,{
+            println("liveMenu berubah")
+            if (viewModel.getPage().value == Page.LIST_MENU){
+                adapter.updateList(it)
+            } else if (viewModel.getPage().value == Page.LIST_MENU_DARI_CARI){
+                adapter.updateList(it)
+                adapter.filterData(viewModel.getSearchBarKeyword().value as String, viewModel.getLiveCategory().value as MenuAttribute)
+            }
+            adapter.sortData(viewModel.getMenuSortComparator())
+
+            if (adapter.count==0){
                 binding.notFoundLabel.visibility = View.VISIBLE
             } else {
                 binding.notFoundLabel.visibility = View.GONE
             }
+        })
+        viewModel.getSortOption().observe(this, {
+            println("sortoption berubah")
+            adapter.sortData(viewModel.getMenuSortComparator(it))
+        })
+        viewModel.getLiveCategory().observe(this, {
+            println("liveCategory berubah")
+            adapter.filterData(viewModel.getSearchBarKeyword().value as String, it)
+        })
+        viewModel.getSearchBarKeyword().observe(this, {
+            println("keyword berubah")
+            adapter.filterData(it, viewModel.getLiveCategory() as MenuAttribute)
         })
 
         binding.fabBtn.setOnClickListener {
@@ -62,7 +84,7 @@ class MenuFragment : Fragment() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 println("sortopt $position")
-                viewModel.sortMenu(when(position){
+                viewModel.setSortOption(when(position){
                     0->SortOption.NAME_ASC
                     1->SortOption.NAME_DESC
                     2->SortOption.TIME_ADDED_ASC
