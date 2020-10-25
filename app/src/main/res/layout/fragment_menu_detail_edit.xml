@@ -85,6 +85,7 @@
             android:layout_marginBottom="30dp"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
+            android:hint="@string/multi_input_hint"
             />
 
 
@@ -109,6 +110,7 @@
             android:layout_marginBottom="30dp"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
+            android:hint="@string/multi_input_hint"
             />
 
 
@@ -133,6 +135,7 @@
             android:layout_marginBottom="30dp"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
+            android:hint="@string/multi_input_hint"
             />
 
         <TextView
@@ -156,6 +159,7 @@
             android:layout_marginBottom="30dp"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
+            android:hint="@string/multi_input_hint"
             />
 
         <LinearLayout

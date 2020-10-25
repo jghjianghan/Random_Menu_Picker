@@ -39,6 +39,7 @@
     <string name="edit_resto_label">Tersedia di restoran</string>
     <string name="btn_save_text">save</string>
     <string name="btn_discard_text">discard</string>
+    <string name="multi_input_hint">Pisahkan input dengan \';\'</string>
 
 
     <string-array name="spinner_kategori">
