@@ -25,6 +25,7 @@ class MainActivityViewModel: ViewModel() {
     private var writeHistoryFlag = MutableLiveData<Boolean>()
     private var searchHistoryStatus = MutableLiveData<Boolean>()
     private var historyList: HistoryList
+    private var searchBarKeyword = MutableLiveData<String>()
 
     init {
         randomLimit.value = 0
@@ -33,6 +34,15 @@ class MainActivityViewModel: ViewModel() {
         writeMenuFlag.value = true
         historyList = HistoryList(historyLimit)
     }
+
+    fun getSearchBarKeyword() : LiveData<String> {
+        return searchBarKeyword
+    }
+
+    fun setSearchBarKeyword(keyword : String) {
+        searchBarKeyword.value = keyword
+    }
+
 
     fun getSearchHistoryStatus() : LiveData<Boolean>{
         return searchHistoryStatus
