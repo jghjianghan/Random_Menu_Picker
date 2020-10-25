@@ -39,6 +39,11 @@ class MenuFragment : Fragment() {
         binding.listMenu.adapter = adapter
         viewModel.getFilteredMenuList().observe(requireActivity(),{
             adapter.updateList(it)
+            if (it.size==0){
+                binding.notFoundLabel.visibility = View.VISIBLE
+            } else {
+                binding.notFoundLabel.visibility = View.GONE
+            }
         })
 
         binding.fabBtn.setOnClickListener {
@@ -73,7 +78,7 @@ class MenuFragment : Fragment() {
         return binding.root
     }
 
-    fun setTitle(title: String){
+    private fun setTitle(title: String){
         if (title.isEmpty()){
             binding.tvTitle.visibility = View.GONE
         } else {

@@ -21,6 +21,7 @@
 
     <!--    fragment menu-->
     <string name="search_result_label">Hasil pencarian untuk\u0020</string>
+    <string name="menu_not_found">Tidak ada menu yang ditemukan</string>
 
 
 <!--    fragment menu detail deskripsi-->
