@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuDetailFragment: MenuDetailFragment
     private lateinit var menuDetailEditFragment: MenuDetailEditFragment
     private lateinit var cariFragment: CariFragment
+    private lateinit var settingFragment : SettingFragment
 
     private lateinit var fragmentManager : FragmentManager
     lateinit var viewModel: MainActivityViewModel
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         menuFragment = MenuFragment.newInstance()
         menuDetailFragment = MenuDetailFragment.newInstance()
         menuDetailEditFragment = MenuDetailEditFragment.newInstance()
+        settingFragment = SettingFragment.newInstance()
 
         setSupportActionBar(binding.toolbar)
         val abdt =  ActionBarDrawerToggle(
@@ -102,7 +104,9 @@ class MainActivity : AppCompatActivity() {
             Page.EDIT_MENU -> {
                 ft.replace(R.id.fragment_container, menuDetailEditFragment).addToBackStack(null)
             }
-            Page.SETTING -> TODO()
+            Page.SETTING -> {
+                ft.replace(R.id.fragment_container, settingFragment)
+            }
             Page.EXIT -> {
                 this.moveTaskToBack(true)
                 this.finish()

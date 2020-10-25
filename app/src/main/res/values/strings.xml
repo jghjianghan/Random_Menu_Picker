@@ -44,6 +44,12 @@
     <string name="langkah_input_hint">Bila ada lebih dari 1 langkah, pisahkan dengan ;</string>
     <string name="resto_input_hint">Bila ada lebih dari 1 nama restoran, pisahkan dengan ;</string>
 
+<!--    fragment setting-->
+    <string name="tv_cooldown_text">Cooldown</string>
+    <string name="tv_cooldown_hint">Banyak pemilihan makanan lainnya sebelum makanan yang sama dapat dipilih lagi</string>
+    <string name="tv_history_text">Search History</string>
+    <string name="btn_clear_text">clear search history</string>
+
 
     <string-array name="spinner_kategori">
         <item>Nama</item>

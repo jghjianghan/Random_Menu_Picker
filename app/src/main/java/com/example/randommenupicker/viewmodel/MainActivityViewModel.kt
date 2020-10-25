@@ -22,15 +22,27 @@ class MainActivityViewModel: ViewModel() {
     private var menuTitle = MutableLiveData<String>()
     private var toolbarTitle = MutableLiveData<String>()
     private var writeMenuFlag = MutableLiveData<Boolean>()
+    private var searchHistoryStatus = MutableLiveData<Boolean>()
 
     init {
         randomLimit.value = 0
         searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
+        searchHistoryStatus.value = true
         writeMenuFlag.value = true
     }
     fun loadMenu(){
         loadAllMenu()
+    }
+
+    fun getSearchHistoryStatus() : LiveData<Boolean>{
+        return searchHistoryStatus
+    }
+
+    fun switchSearchHistoryStatus() {
+        if(searchHistoryStatus.value != null){
+            searchHistoryStatus.value = !(searchHistoryStatus.value as Boolean)
+        }
     }
 
     fun setToolbarTitle(title : String) {
@@ -87,9 +99,18 @@ class MainActivityViewModel: ViewModel() {
         return randomLimit
     }
 
+    fun setRandomLimit(newValue : Int) {
+        randomLimit.value = newValue
+    }
+
+    fun clearSearchHistory() {
+        searchHistory.value?.clear()
+    }
+
     fun getSearchHistory(): LiveData<ArrayList<History>>{
         return searchHistory
     }
+
     fun getLastHistory(): History?{
         if (searchHistory.value != null){
             val size = searchHistory.value!!.size
