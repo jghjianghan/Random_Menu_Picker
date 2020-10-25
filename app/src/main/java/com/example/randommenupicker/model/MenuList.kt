@@ -114,6 +114,10 @@ class MenuList {
         }
     }
 
+    fun deleteAll(){
+        menuList.clear()
+    }
+
     private fun findMenuById(id: Int): Menu? {
         var temp: Menu? = null
         for (i in menuList){

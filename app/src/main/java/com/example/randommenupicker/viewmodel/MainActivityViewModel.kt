@@ -189,6 +189,11 @@ class MainActivityViewModel: ViewModel() {
         return false
     }
 
+    fun deleteAllMenu (){
+        menuList.deleteAll()
+        setWriteMenuFlag(true)
+    }
+
     fun sortMenu(option: SortOption){
         println("sorting")
         if (filteredMenuList.value != null){
@@ -209,11 +214,13 @@ class MainActivityViewModel: ViewModel() {
 
     fun searchMenu(keyword: String, category: MenuAttribute){
         val tempHist: ArrayList<History> = searchHistory.value as ArrayList<History>
-        tempHist.add(History(keyword, category))
-        while (tempHist.size > historyLimit){
-            tempHist.removeAt(0)
+        if (searchHistoryStatus.value as Boolean){
+            tempHist.add(History(keyword, category))
+            while (tempHist.size > historyLimit){
+                tempHist.removeAt(0)
+            }
+            searchHistory.value = tempHist
         }
-        searchHistory.value = tempHist
 
         filteredMenuList.value = menuList.search(keyword, category)
     }
