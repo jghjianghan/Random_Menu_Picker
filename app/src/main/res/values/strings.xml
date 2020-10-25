@@ -39,7 +39,10 @@
     <string name="edit_resto_label">Tersedia di restoran</string>
     <string name="btn_save_text">save</string>
     <string name="btn_discard_text">discard</string>
-    <string name="multi_input_hint">Pisahkan input dengan \';\'</string>
+    <string name="tag_input_hint">Bila ada lebih dari 1 tag, pisahkan dengan ;</string>
+    <string name="bahan_input_hint">Bila ada lebih dari 1 bahan, pisahkan dengan ;</string>
+    <string name="langkah_input_hint">Bila ada lebih dari 1 langkah, pisahkan dengan ;</string>
+    <string name="resto_input_hint">Bila ada lebih dari 1 nama restoran, pisahkan dengan ;</string>
 
 
     <string-array name="spinner_kategori">
