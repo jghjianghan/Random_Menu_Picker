@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">Random Menu Picker</string>
-    <string name="fragment_home_tv_text">Makan Apa \n Hari Ini?</string>
-    <string name="fragment_home_btn_text">aku tidak tau</string>
     <string name="openDrawer"></string>
     <string name="closeDrawer"></string>
     <string name="randomEmptyMenu">No Menu Available</string>
     <string name="sort_option_label">Sort by: </string>
+
+
+<!--    fragment home-->
+    <string name="fragment_home_tv_text">Makan Apa \n Hari Ini?</string>
+    <string name="fragment_home_btn_text">aku tidak tau</string>
+    <string name="fragment_home_random_label">Mungkin kamu mau:</string>
+    <string name="fragment_home_tv_click_hint">Klik nama menu untuk melihat lebih lanjut</string>
 
 
 <!--    fragment cari-->
