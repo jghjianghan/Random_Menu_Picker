@@ -32,6 +32,8 @@ class SettingFragment : Fragment(), TextWatcher, CompoundButton.OnCheckedChangeL
     ): View? {
         binding = FragmentSettingBinding.inflate(inflater, container, false);
 
+        viewModel.setToolbarTitle("Setting")
+
         viewModel.getRandomLimit().observe(this, {
             if(binding.etResult.text.toString() != it.toString()){
                 binding.etResult.setText(it.toString())
