@@ -20,6 +20,7 @@
             android:textColor="@color/colorBlack"
             android:layout_alignParentTop="true"
             android:visibility="gone"
+            android:layout_marginTop="10dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -37,6 +38,17 @@
             android:layout_marginBottom="30dp"
             android:layout_below="@id/tv_title"
             />
+        <TextView
+            android:id="@+id/not_found_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sort_spinner"
+            android:text="@string/menu_not_found"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:visibility="gone"
+            />
 
         <GridView
             android:id="@+id/list_menu"
@@ -46,6 +58,7 @@
             android:stretchMode="columnWidth"
             android:layout_below="@+id/sort_spinner"
             android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
             />
     </RelativeLayout>
 
