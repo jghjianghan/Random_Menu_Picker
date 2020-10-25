@@ -250,4 +250,14 @@ class MainActivityViewModel: ViewModel() {
     fun loadHistory(){
         searchHistory.value = historyList.historyList
     }
+
+    fun deleteHistory(historyId : Int) : Boolean {
+        var res = historyList.delete(historyId)
+        loadHistory()
+        return res
+    }
+
+    fun getFilteredHistoryList(atr : MenuAttribute) : List<History>{
+        return historyList.filter(atr)
+    }
 }

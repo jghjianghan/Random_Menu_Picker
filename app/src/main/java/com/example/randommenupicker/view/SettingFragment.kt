@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.databinding.FragmentSettingBinding
@@ -59,6 +60,31 @@ class SettingFragment : Fragment(), TextWatcher, CompoundButton.OnCheckedChangeL
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
                         viewModel.clearSearchHistory()
+                        val text = "Seluruh search history telah dihapus"
+                        val duration = Toast.LENGTH_SHORT
+
+                        val toast = Toast.makeText(activity, text, duration)
+                        toast.show()
+                    })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show()
+        }
+
+        binding.btnDeleteMenu.setOnClickListener {
+            AlertDialog.Builder(activity)
+                .setTitle("Delete all menu ?")
+                .setMessage("Apakah anda yakin ingin menghapus seluruh menu?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+
+                .setPositiveButton(android.R.string.yes,
+                    DialogInterface.OnClickListener { dialog, which ->
+                        viewModel.deleteAllMenu()
+                        val text = "Seluruh menu telah dihapus"
+                        val duration = Toast.LENGTH_SHORT
+
+                        val toast = Toast.makeText(activity, text, duration)
+                        toast.show()
                     })
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)

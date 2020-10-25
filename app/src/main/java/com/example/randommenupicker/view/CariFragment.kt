@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.FragmentCariBinding
+import com.example.randommenupicker.model.History
 import com.example.randommenupicker.model.MenuAttribute
 import com.example.randommenupicker.model.Page
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
+
 
 class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding : FragmentCariBinding
@@ -40,6 +43,61 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerKategori.adapter = adapter
         binding.spinnerKategori.onItemSelectedListener = this
+
+        binding.searchBar.setQuery(viewModel.getSearchBarKeyword().value, false)
+
+        viewModel.getSearchBarKeyword().observe(this, {
+            binding.searchBar.setQuery(it, false)
+        })
+
+
+        var atr : MenuAttribute
+        when(binding.spinnerKategori.selectedItemPosition) {
+            0 -> atr = MenuAttribute.NAMA
+            1 -> atr = MenuAttribute.DESKRIPSI
+            2 -> atr = MenuAttribute.TAG
+            3 -> atr = MenuAttribute.BAHAN
+            else -> atr = MenuAttribute.RESTO
+        }
+        var filteredHistoryList = viewModel.getFilteredHistoryList(atr)
+        var historyAdapter = SearchHistoryAdapter(inflater, viewModel, filteredHistoryList)
+        binding.listviewHistory.adapter = historyAdapter
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchBar.clearFocus()
+                val imm: InputMethodManager =
+                    activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+                var atr : MenuAttribute
+                when(binding.spinnerKategori.selectedItemPosition) {
+                    0 -> atr = MenuAttribute.NAMA
+                    1 -> atr = MenuAttribute.DESKRIPSI
+                    2 -> atr = MenuAttribute.TAG
+                    3 -> atr = MenuAttribute.BAHAN
+                    else -> atr = MenuAttribute.RESTO
+                }
+                viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+                binding.searchBar.setQuery("", false);
+                viewModel.setSearchBarKeyword("")
+                viewModel.setPage(Page.LIST_MENU_DARI_CARI)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(filteredHistoryList.contains(newText)) {
+                    if(newText != null) historyAdapter.filter(newText)
+                }
+                return false
+            }
+
+        })
+
+
+        binding.searchBar.setOnClickListener {
+            binding.searchBar.setIconified(false);
+        }
+
         binding.btnCari.setOnClickListener {
             val imm: InputMethodManager =
                 activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -53,7 +111,9 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 3 -> atr = MenuAttribute.BAHAN
                 else -> atr = MenuAttribute.RESTO
             }
-            viewModel.searchMenu(binding.etKeyword.text.toString(), atr)
+            viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+            binding.searchBar.setQuery("", false);
+            viewModel.setSearchBarKeyword("")
             viewModel.setPage(Page.LIST_MENU_DARI_CARI)
         }
         viewModel.setToolbarTitle("Cari")

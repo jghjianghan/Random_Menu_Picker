@@ -55,6 +55,8 @@
     <string name="tv_cooldown_hint">Banyak pemilihan makanan lainnya sebelum makanan yang sama dapat dipilih lagi</string>
     <string name="tv_history_text">Search History</string>
     <string name="btn_clear_text">clear search history</string>
+    <string name="tv_menu_text">Menu</string>
+    <string name="btn_delete_menu_text">delete all menu</string>
 
 
     <string-array name="spinner_kategori">

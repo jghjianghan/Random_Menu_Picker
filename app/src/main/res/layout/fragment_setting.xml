@@ -106,6 +106,33 @@
         android:layout_gravity="center"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorBlue"
+        android:layout_marginVertical="40dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_menu_text"
+        android:textSize="25sp"
+        android:textColor="@color/colorBlack"
+        />
+
+    <Button
+        android:id="@+id/btn_delete_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_delete_menu_text"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorLightGray"
+        android:paddingHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        />
 
 
 </LinearLayout>

@@ -75,6 +75,28 @@ class HistoryList (private var historyLimit: Int) {
         }
     }
 
+    fun delete(historyId : Int) : Boolean{
+        var idx = -1
+        for ((i, value) in historyList.withIndex()) {
+            if(value.idHistory == historyId) {
+                idx = i
+                break
+            }
+        }
+
+        if(idx != -1) {
+            historyList.removeAt(idx)
+            return true
+        }
+        return false
+    }
+
+    fun filter(atr : MenuAttribute) : List<History>{
+        return historyList.filter {
+            it.category == atr
+        }
+    }
+
     fun clear(){
         historyList.clear()
     }
