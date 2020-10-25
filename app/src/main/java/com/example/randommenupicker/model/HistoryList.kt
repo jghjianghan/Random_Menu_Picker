@@ -28,6 +28,13 @@ class HistoryList (private var historyLimit: Int) {
         }
 
         historyList.forEach{menu -> println(menu)}
+
+        var maxId = -1
+        for (i in historyList){
+            if (i.idHistory > maxId)
+                maxId = i.idHistory
+        }
+        History.id = maxId+1
     }
 
     fun writeToFile(context: Context){
