@@ -21,11 +21,13 @@ class MainActivityViewModel: ViewModel() {
     private var menuList = MenuList()
     private var menuTitle = MutableLiveData<String>()
     private var toolbarTitle = MutableLiveData<String>()
+    private var writeMenuFlag = MutableLiveData<Boolean>()
 
     init {
-        randomLimit.value = 5
+        randomLimit.value = 0
         searchHistory.value = ArrayList<History>()
         page.value = Page.HOME
+        writeMenuFlag.value = true
     }
     fun loadMenu(){
         loadAllMenu()
@@ -39,12 +41,14 @@ class MainActivityViewModel: ViewModel() {
         return toolbarTitle
     }
 
-    fun loadMenu(context: Context){
+    fun loadAllData(context: Context){
         menuList.loadData(context)
+        //sharedPref
         loadAllMenu()
     }
     fun writeAllMenu(context: Context){
         menuList.writeToFile(context)
+        setWriteMenuFlag(false)
     }
 
     fun loadAllMenu() {
@@ -113,6 +117,13 @@ class MainActivityViewModel: ViewModel() {
         println("menutitle: ${menuTitle.value}")
     }
 
+    fun getWriteMenuFlag(): LiveData<Boolean>{
+        return writeMenuFlag
+    }
+    fun setWriteMenuFlag(boolean: Boolean){
+        writeMenuFlag.value = boolean
+    }
+
     fun addMenu(
         nama:String,
         deskripsi:String,
@@ -121,7 +132,11 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        return menuList.add(nama, deskripsi, tag, bahan, langkah, resto)
+        val success = menuList.add(nama, deskripsi, tag, bahan, langkah, resto)
+        if (success){
+            setWriteMenuFlag(true)
+        }
+        return success
     }
 
     fun editMenu(
@@ -133,13 +148,23 @@ class MainActivityViewModel: ViewModel() {
         langkah:String,
         resto:String
     ): Boolean{
-        return menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
+        val success = menuList.edit(idMenu, nama, deskripsi, tag, bahan, langkah, resto)
+        if (success){
+            setWriteMenuFlag(true)
+        }
+        return success
     }
 
     fun deleteMenu(
         idMenu:Int?,
     ): Boolean{
-        if(idMenu != null) return menuList.delete(idMenu)
+        if(idMenu != null){
+            val success = menuList.delete(idMenu)
+            if (success){
+                setWriteMenuFlag(true)
+            }
+            return success
+        }
         return false
     }
 

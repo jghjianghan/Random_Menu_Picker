@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.loadMenu(this)
+        viewModel.loadAllData(this)
 
         homeFragment = HomeFragment.newInstance()
         leftDrawerFragment = LeftDrawerFragment.newInstance()
@@ -67,6 +67,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getToolbarTitle().observe(this, {
             changeToolbarTitle(it)
+        })
+
+        viewModel.getWriteMenuFlag().observe(this, {
+            if (it){
+                viewModel.writeAllMenu(this)
+            }
         })
     }
 
@@ -121,8 +127,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
+    fun writeMenu (){
         viewModel.writeAllMenu(this)
-        super.onDestroy()
     }
 }
