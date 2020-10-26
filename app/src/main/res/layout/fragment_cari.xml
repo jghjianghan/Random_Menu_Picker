@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_cari"
             android:layout_toStartOf="@id/btn_cari"
+            android:visibility="gone"
             />
     </RelativeLayout>
 </RelativeLayout>

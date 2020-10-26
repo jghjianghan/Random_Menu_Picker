@@ -122,9 +122,13 @@ class SettingFragment : Fragment(), TextWatcher, CompoundButton.OnCheckedChangeL
     }
 
     override fun afterTextChanged(s: Editable?) {
-        var count = Integer.parseInt(binding.etResult.text.toString())
-        if(count < 0) count = 0
-        viewModel.setRandomLimit(count)
+        if (s.toString().isEmpty()){
+            viewModel.setRandomLimit(0)
+        } else {
+            var count = Integer.parseInt(binding.etResult.text.toString())
+            if(count < 0) count = 0
+            viewModel.setRandomLimit(count)
+        }
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {

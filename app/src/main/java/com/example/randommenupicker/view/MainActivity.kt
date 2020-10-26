@@ -1,7 +1,6 @@
 package com.example.randommenupicker.view
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -11,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.randommenupicker.R
 import com.example.randommenupicker.databinding.ActivityMainBinding
 import com.example.randommenupicker.model.Page
+import com.example.randommenupicker.model.SharedPrefWriter
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 
 
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fragmentManager : FragmentManager
     lateinit var viewModel: MainActivityViewModel
+    private lateinit var pencatat: SharedPrefWriter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         viewModel.loadAllData(this)
+
+        pencatat = SharedPrefWriter(this)
 
         homeFragment = HomeFragment.newInstance()
         leftDrawerFragment = LeftDrawerFragment.newInstance()
@@ -72,12 +75,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.getWriteMenuFlag().observe(this, {
-            if (it){
+            if (it) {
                 viewModel.writeAllMenu(this)
             }
         })
         viewModel.getWriteHistoryFlag().observe(this, {
-            if (it){
+            if (it) {
                 viewModel.writeAllHistory(this)
             }
         })
@@ -135,5 +138,17 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        pencatat.saveRandomLimit(viewModel.getRandomLimit().value as Int)
+        pencatat.saveSearchHistoryStatus(viewModel.getSearchHistoryStatus().value as Boolean)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.setRandomLimit(pencatat.getRandomLimit())
+        viewModel.setSearchHistoryStatus(pencatat.getSearchHistoryStatus())
     }
 }

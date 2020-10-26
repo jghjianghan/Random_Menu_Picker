@@ -62,6 +62,12 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
         var filteredHistoryList = viewModel.getFilteredHistoryList(atr)
         var historyAdapter = SearchHistoryAdapter(inflater, viewModel, filteredHistoryList)
         binding.listviewHistory.adapter = historyAdapter
+
+        viewModel.getSearchHistory().observe(this, {
+            historyAdapter.updateList(it)
+
+        })
+
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.searchBar.clearFocus()
@@ -77,9 +83,10 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     3 -> atr = MenuAttribute.BAHAN
                     else -> atr = MenuAttribute.RESTO
                 }
-//                viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+                viewModel.addToHistory(binding.searchBar.query.toString(), atr)
                 viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
                 viewModel.setLiveCategory(atr)
+
                 binding.searchBar.setQuery("", false);
                 viewModel.setPage(Page.LIST_MENU_DARI_CARI)
                 return false
@@ -87,13 +94,23 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if(filteredHistoryList.contains(newText)) {
-                    if(newText != null) historyAdapter.filter(newText)
+                    if(newText != null) {
+                        historyAdapter.filter(newText)
+                        viewModel.setSearchBarKeyword(newText)
+                    }
                 }
                 return false
             }
-
         })
 
+        binding.searchBar.setOnQueryTextFocusChangeListener {
+                v, hasFocus ->
+            if (hasFocus){
+                binding.listviewHistory.visibility = View.VISIBLE
+            } else {
+                binding.listviewHistory.visibility = View.GONE
+            }
+        }
 
         binding.searchBar.setOnClickListener {
             binding.searchBar.setIconified(false);
@@ -112,7 +129,7 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 3 -> atr = MenuAttribute.BAHAN
                 else -> atr = MenuAttribute.RESTO
             }
-//            viewModel.searchMenu(binding.searchBar.query.toString(), atr)
+            viewModel.addToHistory(binding.searchBar.query.toString(), atr)
             viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
             viewModel.setLiveCategory(atr)
             binding.searchBar.setQuery("", false)

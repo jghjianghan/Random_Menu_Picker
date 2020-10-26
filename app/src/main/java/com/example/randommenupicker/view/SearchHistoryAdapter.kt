@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.randommenupicker.R
 import com.example.randommenupicker.model.History
+import com.example.randommenupicker.model.Menu
 import com.example.randommenupicker.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.item_list_history.view.*
 
@@ -24,7 +25,7 @@ class SearchHistoryAdapter(
     }
 
     override fun getItem(position: Int): Any {
-        return dataDisplay[position]
+        return dataDisplay[getCount() - 1 - position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -55,5 +56,10 @@ class SearchHistoryAdapter(
             it.keyword.toLowerCase().contains(query.toLowerCase())
         }
         notifyDataSetChanged()
+    }
+    fun updateList (list : ArrayList<History>) {
+        this.data = ArrayList(list)
+//        notifyDataSetChanged()
+        filter(viewModel.getSearchBarKeyword().value as String)
     }
 }

@@ -12,10 +12,9 @@ import kotlin.collections.ArrayList
 
 class MainActivityViewModel: ViewModel() {
     private val randomizer = MenuChooser()
-    private var historyLimit = 20
+    private var historyLimit = 100
     private var chosenMenu = MutableLiveData<Menu>()
     private var randomChosenMenu = MutableLiveData<Menu>()
-//    private var filteredMenuList = MutableLiveData<ArrayList<Menu>>()
     private var searchHistory = MutableLiveData<ArrayList<History>>()
     private var randomLimit = MutableLiveData<Int>()
     private var page = MutableLiveData<Page>()
@@ -33,9 +32,9 @@ class MainActivityViewModel: ViewModel() {
 
 
     init {
-        randomLimit.value = 0
+//        randomLimit.value = 0
         page.value = Page.HOME
-        searchHistoryStatus.value = false
+//        searchHistoryStatus.value = true
         writeMenuFlag.value = false
         historyList = HistoryList(historyLimit)
         liveMenu.value = menuList.menuList
@@ -62,6 +61,9 @@ class MainActivityViewModel: ViewModel() {
             searchHistoryStatus.value = !(searchHistoryStatus.value as Boolean)
         }
     }
+    fun setSearchHistoryStatus(boolean: Boolean) {
+        searchHistoryStatus.value = boolean
+    }
 
     fun setToolbarTitle(title : String) {
         toolbarTitle.value = title
@@ -73,8 +75,10 @@ class MainActivityViewModel: ViewModel() {
 
     fun loadAllData(context: Context){
         menuList.loadData(context)
-        //sharedPref
+        historyList.loadData(context)
+        loadHistory()
         liveMenu.value = menuList.menuList
+
     }
     fun writeAllMenu(context: Context){
         menuList.writeToFile(context)
@@ -118,7 +122,9 @@ class MainActivityViewModel: ViewModel() {
     }
 
     fun clearSearchHistory() {
-        searchHistory.value?.clear()
+        historyList.clear()
+        setWriteHistoryFlag(true)
+        loadHistory()
     }
 
     fun getSearchHistory(): LiveData<ArrayList<History>>{
@@ -239,22 +245,15 @@ class MainActivityViewModel: ViewModel() {
         return MenuList.getMenuSortComparator(liveSortOption.value as SortOption)
     }
 
-    fun searchMenu(keyword: String, category: MenuAttribute){
+    fun addToHistory(keyword: String, category: MenuAttribute){
         if (searchHistoryStatus.value as Boolean){
             historyList.add(keyword, category)
+            setWriteHistoryFlag(true)
             loadHistory()
         }
-
-        setWriteHistoryFlag(true)
     }
     fun getSearchFilterPredicate(keyword: String, category: MenuAttribute): Predicate<Menu>{
         return MenuList.getSearchFilterPredicate(keyword, category)
-    }
-
-    fun clearHistory(){
-        historyList.clear()
-        loadHistory()
-        setWriteHistoryFlag(true)
     }
 
     fun writeAllHistory(context: Context){
@@ -267,6 +266,7 @@ class MainActivityViewModel: ViewModel() {
 
     fun deleteHistory(historyId : Int) : Boolean {
         val res = historyList.delete(historyId)
+        setWriteHistoryFlag(true)
         loadHistory()
         return res
     }
