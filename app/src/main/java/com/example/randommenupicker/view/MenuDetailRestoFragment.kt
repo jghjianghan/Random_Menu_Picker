@@ -25,6 +25,7 @@ class MenuDetailRestoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println("ON CREATE VIEW MENU DETAIL RESTO")
         binding = FragmentMenuDetailRestoBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this,{
             if(it != null) {
@@ -43,9 +44,15 @@ class MenuDetailRestoFragment : Fragment() {
 
     companion object {
         fun newInstance() : MenuDetailRestoFragment{
+            println("RESTO NEW INSTANCE")
             var fragment = MenuDetailRestoFragment()
             return fragment
         }
+    }
+
+    override fun onDestroy() {
+        println("MENU DETAIL RESTO ON DESTROY")
+        super.onDestroy()
     }
 
 

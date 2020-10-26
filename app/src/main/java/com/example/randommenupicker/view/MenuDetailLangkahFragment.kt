@@ -24,6 +24,7 @@ class MenuDetailLangkahFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println("ON CREATE VIEW MENU DETAIL LANGKAH")
         binding = FragmentMenuDetailLangkahBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this,{
 
@@ -42,9 +43,15 @@ class MenuDetailLangkahFragment : Fragment() {
 
     companion object {
         fun newInstance() : MenuDetailLangkahFragment{
+            println("LANGKAH NEW INSTANCE")
             var fragment = MenuDetailLangkahFragment()
             return fragment
         }
+    }
+
+    override fun onDestroy() {
+        println("MENU DETAIL LANGKAH ON DESTROY")
+        super.onDestroy()
     }
 
 

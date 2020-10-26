@@ -117,23 +117,27 @@ class CariFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.btnCari.setOnClickListener {
-            val imm: InputMethodManager =
-                activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view!!.windowToken, 0)
 
-            var atr : MenuAttribute
-            when(binding.spinnerKategori.selectedItemPosition) {
-                0 -> atr = MenuAttribute.NAMA
-                1 -> atr = MenuAttribute.DESKRIPSI
-                2 -> atr = MenuAttribute.TAG
-                3 -> atr = MenuAttribute.BAHAN
-                else -> atr = MenuAttribute.RESTO
+            if(!(binding.searchBar.query.toString().equals(""))) {
+                val imm: InputMethodManager =
+                    activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+                var atr : MenuAttribute
+                when(binding.spinnerKategori.selectedItemPosition) {
+                    0 -> atr = MenuAttribute.NAMA
+                    1 -> atr = MenuAttribute.DESKRIPSI
+                    2 -> atr = MenuAttribute.TAG
+                    3 -> atr = MenuAttribute.BAHAN
+                    else -> atr = MenuAttribute.RESTO
+                }
+                viewModel.addToHistory(binding.searchBar.query.toString(), atr)
+                viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
+                viewModel.setLiveCategory(atr)
+                binding.searchBar.setQuery("", false)
+                viewModel.setPage(Page.LIST_MENU_DARI_CARI)
             }
-            viewModel.addToHistory(binding.searchBar.query.toString(), atr)
-            viewModel.setSearchBarKeyword(binding.searchBar.query.toString())
-            viewModel.setLiveCategory(atr)
-            binding.searchBar.setQuery("", false)
-            viewModel.setPage(Page.LIST_MENU_DARI_CARI)
+
         }
         viewModel.setToolbarTitle("Cari")
         return binding.root

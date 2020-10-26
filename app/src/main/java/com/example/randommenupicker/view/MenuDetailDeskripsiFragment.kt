@@ -24,6 +24,7 @@ class MenuDetailDeskripsiFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println("ON CREATE VIEW MENU DETAIL DESKRIPSI")
         binding = FragmentMenuDetailDeskripsiBinding.inflate(inflater, container, false);
         viewModel.getChosenMenu().observe(this, {
             if(it != null){
@@ -56,9 +57,15 @@ class MenuDetailDeskripsiFragment : Fragment() {
 
     companion object {
         fun newInstance() : MenuDetailDeskripsiFragment{
+            println("DESKRIPSI NEW INSTANCE")
             var fragment = MenuDetailDeskripsiFragment()
             return fragment
         }
+    }
+
+    override fun onDestroy() {
+        println("MENU DETAIL DESKRIPSI ON DESTROY")
+        super.onDestroy()
     }
 
 
