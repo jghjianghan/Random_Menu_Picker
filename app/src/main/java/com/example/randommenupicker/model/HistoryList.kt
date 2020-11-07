@@ -18,11 +18,11 @@ class HistoryList (private var historyLimit: Int) {
 
     fun loadData(context: Context){
         //from file
-        var file = File(context.getExternalFilesDir(null), MenuList.FILENAME)
+        var file = File(context.getExternalFilesDir(null), FILENAME)
         val gson = Gson()
         val listType = object : TypeToken<ArrayList<History>>(){}.type
         try {
-            historyList = gson.fromJson(FileReader((context.getExternalFilesDir(null)?.absolutePath ?: "") + "/" + MenuList.FILENAME), listType)
+            historyList = gson.fromJson(FileReader((context.getExternalFilesDir(null)?.absolutePath ?: "") + "/" + FILENAME), listType)
         } catch (e: IOException) {
             println("data file not found")
         }
@@ -44,7 +44,7 @@ class HistoryList (private var historyLimit: Int) {
 
         val content: String = gson.toJson(historyList)
         try {
-            file = File(context.getExternalFilesDir(null), MenuList.FILENAME)
+            file = File(context.getExternalFilesDir(null), FILENAME)
             fop = FileOutputStream(file)
             if (!file.exists()){
                 file.createNewFile()
